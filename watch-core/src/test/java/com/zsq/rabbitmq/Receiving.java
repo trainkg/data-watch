@@ -35,7 +35,7 @@ public class Receiving {
 	          System.out.println(" [x] Received '" + message + "'");
 	        }
 	    };
-	    channel.basicConsume(QUEUE_NAME, true, consumer);
+	    channel.basicConsume(QUEUE_NAME, true, consumer); //自动发送回执
       
     }
 }
