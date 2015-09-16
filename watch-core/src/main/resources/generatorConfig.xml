@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration  
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+  <generatorConfiguration>
+    <!-- <properties resource="generatorConfig.properties" /> -->
+ 
+    <classPathEntry location="D:/m_rep/repository/mysql/mysql-connector-java/5.1.24/mysql-connector-java-5.1.24.jar" />
+ 
+    <context id="XATL" targetRuntime="MyBatis3" defaultModelType="conditional">
+        <!-- <plugin type="plugin.SelectByPagePlugin" /> -->
+        <!-- 此处是将Example改名为Criteria 当然 想改成什么都行~ <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin"> <property name="searchString" 
+            value="Example$" /> <property name="replaceString" value="Criteria" /> </plugin> <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" 
+            /> <plugin type="org.mybatis.generator.plugins.MapperConfigPlugin"> <property name="fileName" value="GeneratedMapperConfig.xml" /> 
+            <property name="targetPackage" value="com.cy.mybatis.mbg.util" /> <property name="targetProject" value="${targetProject}" /> </plugin> -->
+        <commentGenerator>
+            <!-- 去除自动生成的注释 -->
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/datawatch?generateSimpleParameterMetadata=true"
+            userId="root" password="123456">
+        </jdbcConnection>
+ 
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="true" />
+        </javaTypeResolver>
+ 
+        <!-- targetProject:自动生成代码的位置 -->
+        <javaModelGenerator targetPackage="com.zsq.datawatch.entity" targetProject="E:\datawatch\data-watch\watch-core\src\main\java">
+            <property name="enableSubPackages" value="true" />
+        </javaModelGenerator>
+ 
+        <sqlMapGenerator targetPackage="com.zsq.datawatch.dao" targetProject="E:\datawatch\data-watch\watch-core\src\main\java">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+ 
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.zsq.datawatch.dao" targetProject="E:\datawatch\data-watch\watch-core\src\main\java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+        <!-- tableName:用于自动生成代码的数据库表；domainObjectName:对应于数据库表的javaBean类名 -->
+        <table tableName="alarmtype" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+            enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="machinfor" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+            enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="opermode" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+            enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="operstepmode" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+            enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="pctype" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+            enableSelectByExample="false" selectByExampleQueryId="false"></table>
+    </context>
+</generatorConfiguration>
