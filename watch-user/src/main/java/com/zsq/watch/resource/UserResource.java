@@ -1,8 +1,9 @@
 package com.zsq.watch.resource;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zsq.euser.SimpleLoginForm;
@@ -17,9 +18,9 @@ public class UserResource {
 	 * @param loginForm
 	 * @return
 	 */
-	@RequestMapping("/login")
+	@RequestMapping(value="/login",method=RequestMethod.POST)
 	@ResponseBody
-	public Result systemLogin(@ModelAttribute SimpleLoginForm loginForm){
+	public Result systemLogin(@RequestBody SimpleLoginForm loginForm){
 		 Result r = new Result();
 		 r.setStatus("200");
 		 r.setMessage("success");
