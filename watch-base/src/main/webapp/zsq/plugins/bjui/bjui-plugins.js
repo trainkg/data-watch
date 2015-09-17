@@ -123,9 +123,10 @@
             
             $(this)
                 .validator({
-                    valid: function(form) {
+                	//取消 对于提交业务入侵太严重
+                	/* valid: function(form) {
                         $(form).bjuiajax('ajaxForm', $(form).data())
-                    },
+                    },*/
                     validClass : 'ok',
                     theme      : 'red_right_effect'
                 })

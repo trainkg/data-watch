@@ -72,18 +72,18 @@ require(['jquery','plugins/bjui/bjui-initui','iCheck','plugins/niceValidator/loc
 <div id="errorie"><div>您还在使用老掉牙的IE，请升级您的浏览器到 IE8以上版本 <a target="_blank" href="http://windows.microsoft.com/zh-cn/internet-explorer/ie-8-worldwide-languages">点击升级</a>&nbsp;&nbsp;强烈建议您更改换浏览器：<a href="http://down.tech.sina.com.cn/content/40975.html" target="_blank">谷歌 Chrome</a></div></div>
 <![endif]-->
 <div class="main_box">
-    <div class="setting"><a href="javascript:;" onclick="choose_bg();" title="更换背景"><span class="glyphicon glyphicon-th-large"></span></a></div>
+    <div class="setting"><a href="javascript:;" title="更换背景"><span class="glyphicon glyphicon-th-large"></span></a></div>
 	<div class="login_box">
         <div class="login_logo">
         	<h3>数据监测</h3>
         </div>
         <div class="login_form">
-    		<form id="login_form" data-toggle="validate" data-alertmsg="false" method="post">
+    		<form id="login_form" action="/datawc/login" data-toggle="validate" data-alertmsg="false" method="post">
     			<div class="form-group">
-    				<label for="j_username" class="t">用户名：</label> <input data-rule="用户名:required" data-tip="请填写用户名" id="j_username" placeholder="用户名" name="username" type="text" class="form-control x319 in" autocomplete="off">
+    				<label for="userName" class="t">用户名：</label> <input data-rule="用户名:required" data-tip="请填写用户名" id="j_username" placeholder="用户名" name="username" type="text" class="form-control x319 in" autocomplete="off">
     			</div>
     			<div class="form-group">
-    				<label for="j_password" class="t">密　码：</label> <input data-rule="密码:required" id="j_password" placeholder="密码" name="passwordhash" type="password" class="form-control x319 in">
+    				<label for="password" class="t">密　码：</label> <input data-rule="密码:required" id="j_password" placeholder="密码" name="passwordhash" type="password" class="form-control x319 in">
     			</div>
     			<div class="form-group">
                     <label class="t"></label>
