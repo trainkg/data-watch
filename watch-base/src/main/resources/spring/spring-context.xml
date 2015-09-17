@@ -26,7 +26,7 @@
 	<!-- 基本服务器配置 -->
 	<import resource="classpath:mbase/mybatis-springcontext.xml"/>
 	<!-- 加载SHIRO配置 -->
-	<!-- <import resource="classpath:spring/springcontext-shiro.xml"/> -->
+	<import resource="classpath:spring/springcontext-shiro.xml"/>
 	
 	<!-- 配置用户密码加密方式 -->
 	<bean class="com.zsq.euser.MD5EncryptService" id="passwordencry"></bean>
