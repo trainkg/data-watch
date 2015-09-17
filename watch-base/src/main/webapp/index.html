@@ -58,7 +58,7 @@
 <script src="./zsq/r.js"></script>
 <script src="./zsq/base.js"></script>
 <script type="text/javascript">
-require(['jquery','plugins/bjui/bjui-initui','iCheck','plugins/niceValidator/local/zh_CN','plugins/bjui/bjui-plugins'],function(){$('.main_box').initui()})
+require(['ctrl/base','jquery','plugins/bjui/bjui-initui','iCheck','plugins/niceValidator/local/zh_CN','plugins/bjui/bjui-plugins','ctrl/base'],function(base,$){$('.main_box').initui();base('index')})
 </script>
 </head>
 <body>
@@ -78,7 +78,7 @@ require(['jquery','plugins/bjui/bjui-initui','iCheck','plugins/niceValidator/loc
         	<h3>数据监测</h3>
         </div>
         <div class="login_form">
-    		<form id="login_form" action="/datawc/login" data-toggle="validate" data-alertmsg="false" method="post">
+    		<form id="login_form" data-validator-option="{focusInvalid:false}" data-toggle="validate" data-alertmsg="false" method="post">
     			<div class="form-group">
     				<label for="userName" class="t">用户名：</label> <input data-rule="用户名:required" data-tip="请填写用户名" id="j_username" placeholder="用户名" name="username" type="text" class="form-control x319 in" autocomplete="off">
     			</div>

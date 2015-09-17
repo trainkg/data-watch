@@ -16,7 +16,11 @@ var rconfig = {
 	//从CommonJS包(package)中加载模块。参见从包中加载模块
 	packages:[
 		{name:'zbase',location:"."},
-		{name:'doc',location:"../doc"}
+		//应用路径配置
+		{name:'ctrl',location:"../watch/js/controller"},
+		{name:'view',location:"../watch/js/view"},
+		{name:'model',location:"../watch/js/modal"},
+		{name:'watch',location:"../watch"}
 	],
 	//在deps加载完毕后执行的函数。当将require设置为一个config object在加载require.js之前使用时很有用，其作为配置的deps数组加载完毕后为require指定的函数。
 	callback:null,
