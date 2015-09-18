@@ -22,6 +22,15 @@ define(['jquery','backbone','plugins/bjui/bjui-extends'],function($,Backbone){
  		})
  	}
  	
+ 	//machine info
+ 	baseCtrl.machine = function(){
+ 		require(['watchcore/js/machinInfo.js'],function(Machine){
+ 			var config = {
+ 				el:"#machineInfo .pageContent"
+ 			}
+ 		 	new Machine(config);
+ 		})
+ 	}
  	
  	function init(key){
  		baseCtrl[key]();

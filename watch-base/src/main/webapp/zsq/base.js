@@ -8,7 +8,7 @@ function getContextPath() {
 
 
 var rconfig = {
-	//所有模块的查找根路径。
+	//所有模块的查找根路径。 还是根路径为标准
 	baseUrl : getContextPath()+'/zsq',
 	waitSeconds: 7,
 	// RequireJS获取资源时附加在URL后面的额外的query参数。作为浏览器或服务器未正确配置时的“cache bust”手段很有用。使用cache bust配置的一个示例：
@@ -20,7 +20,8 @@ var rconfig = {
 		{name:'ctrl',location:"../watch/js/controller"},
 		{name:'view',location:"../watch/js/view"},
 		{name:'model',location:"../watch/js/modal"},
-		{name:'watch',location:"../watch"}
+		{name:'watch',location:"../watch"},
+		{name:'watchcore',location:"../watchcore"}
 	],
 	//在deps加载完毕后执行的函数。当将require设置为一个config object在加载require.js之前使用时很有用，其作为配置的deps数组加载完毕后为require指定的函数。
 	callback:null,
