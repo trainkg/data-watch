@@ -32,5 +32,6 @@
 	<bean class="com.zsq.euser.MD5EncryptService" id="passwordencry"></bean>
 	
 	<import resource="classpath*:spring-model-euser.xml"/>
+	<import resource="classpath*:spring-model-watchuser.xml"/>
 	<import resource="classpath*:spring-model-datawatch.xml"/>
 </beans>

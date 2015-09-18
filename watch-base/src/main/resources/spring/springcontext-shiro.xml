@@ -90,6 +90,7 @@
 				/statics/** = anon
 				/zsq/** = anon
 				/resources/** = anon
+				/app = authc
 				/** = anon
 			</value> 
 		</property>
