@@ -24,6 +24,10 @@ public class UserResource {
 		 Result r = new Result();
 		 r.setStatus("200");
 		 r.setMessage("success");
+		 if(!"admin".equals(loginForm.getUserName())){
+			 r.setStatus("503");
+			 r.setMessage("无效的账户");
+		 }
 		 return r;
 	}
 }

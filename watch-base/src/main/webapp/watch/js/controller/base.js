@@ -11,12 +11,18 @@ define(['jquery','backbone','plugins/bjui/bjui-extends'],function($,Backbone){
  				var lm = new loginModel(fd);
  				Backbone.sync('create',lm,{
  					success:function(r){
- 						$(document).alertmsg("info",r.message);
+ 						if(r.status == '200'){
+ 							window.location.href = "app";
+ 						}else{
+ 							$(document).alertmsg("error",r.message);
+ 						}
  					}
  				})
  			})
  		})
  	}
+ 	
+ 	
  	function init(key){
  		baseCtrl[key]();
  	}
