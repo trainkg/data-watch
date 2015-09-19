@@ -17,6 +17,16 @@
 	  <artifactId>amqp-client</artifactId>
 	  <version>3.5.4</version>
 	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-core</artifactId>
+		<version>3.2.3.RELEASE</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
+		<version>3.2.3.RELEASE</version>
+	</dependency>
   </dependencies>
   <artifactId>watch-core</artifactId>
   <build>

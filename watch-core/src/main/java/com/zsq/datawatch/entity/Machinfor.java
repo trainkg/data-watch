@@ -3,78 +3,186 @@ package com.zsq.datawatch.entity;
 public class Machinfor {
     private Integer id;
 
+    /**
+     * 机器版本号
+     */
     private String machnum;
 
+    /**
+     * 机器MAC地址
+     */
     private String machmac;
 
+    /**
+     * 机器ID
+     */
     private String machip;
 
+    /**
+     * 机器端口
+     */
     private Integer machport;
 
+    /**
+     * 机器模式
+     */
     private String machmode;
 
+    /**
+     * 马达状态ON/OFF
+     */
     private String machmotorstatue;
-
+    
     private String machheartstatue;
-
+    
+    /**
+     * COM1通讯状态ON/OFF
+     */
     private Integer com1statue;
 
+    /**
+     * COM2通讯状态ON/OFF
+     */
     private Integer com2statue;
 
+    /**
+     * AUST通讯状态ON/OFF
+     */
     private Integer auststatue;
-
+    
+    /**
+     * 料温一段状态
+     */
     private String temper1statue;
-
+    
+    /**
+     * 料温二段状态
+     */
     private String temper2statue;
-
+    
+    /**
+     * 料温三段状态
+     */
     private String temper3statue;
-
+    
+    /**
+     * 料温四段状态
+     */
     private String temper4statue;
-
+    
+    /**
+     * 料温五段状态
+     */
     private String temper5statue;
-
+    
+    /**
+     * 料温六段状态
+     */
     private String temper6statue;
-
+    
+    /**
+     * 料温七段状态
+     */
     private String temper7statue;
-
+    
+    /**
+     * 料温八段状态
+     */
     private String temper8statue;
-
+    
+    /**
+     * 料温九段状态
+     */
     private String temper9statue;
-
+    
+    /**
+     * 料温一段
+     */
     private Integer temper1value;
-
+    
+    /**
+     * 料温二段
+     */
     private Integer temper2value;
-
+    
+    /**
+     * 料温三段
+     */
     private Integer temper3value;
 
+    /**
+     * 料温四段
+     */
     private Integer temper4value;
 
+    /**
+     * 料温五段
+     */
     private Integer temper5value;
 
+    /**
+     * 料温六段
+     */
     private Integer temper6value;
 
+    /**
+     * 料温七段
+     */
     private Integer temper7value;
-
+    
+    /**
+     * 料温八段
+     */
     private Integer temper8value;
-
+    
+    /**
+     * 料温九段
+     */
     private Integer temper9value;
 
+    /**
+     * 油温
+     */
     private Integer oiltempervalue;
-
+    
+    /**
+     * 第一根电子尺值
+     */
     private Integer ruler1value;
 
+    /**
+     * 第二根电子尺值
+     */
     private Integer ruler2value;
-
+    
+    /**
+     * 第三根电子尺值
+     */
     private Integer ruler3value;
-
+    
+    /**
+     * 第四根电子尺值
+     */
     private Integer ruler4value;
 
+    /**
+     * 第五根电子尺值
+     */
     private Integer ruler5value;
 
+    /**
+     * 第六根电子尺值
+     */
     private Integer ruler6value;
-
+    
+    /**
+     * 第七根电子尺值
+     */
     private Integer ruler7value;
-
+    
+    /**
+     * 第八根电子尺值
+     */
     private Integer ruler8value;
 
     private Integer oper1value;
@@ -449,5 +557,11 @@ public class Machinfor {
 
     public void setOper7value(Integer oper7value) {
         this.oper7value = oper7value;
+    }
+    
+    @Override
+    public String toString() {
+    	// TODO Auto-generated method stub
+    	return getMachip()+"-"+getMachmac();
     }
 }
