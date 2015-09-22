@@ -8,7 +8,7 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 public class Send {
 	
-	private final static String QUEUE_NAME = "hello";
+	private final static String QUEUE_NAME = "ZSQ_WATCH";
 	public static void main(String[] args) throws java.io.IOException,TimeoutException  {
 		try {
 			ConnectionFactory factory = new ConnectionFactory();
@@ -17,8 +17,10 @@ public class Send {
 			Channel channel = connection.createChannel();
 			
 			channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-			String message = "<script>alert(123123)</script>";
-			channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
+			String message = "RANDOM info : int value "+ Math.random();
+			for (int i = 0; i < 100; i++) {
+				channel.basicPublish("", QUEUE_NAME, null, ("["+i+"]"+message).getBytes());
+			}
 			System.out.println(" [x] Sent '" + message + "'");
 			
 			channel.close();
