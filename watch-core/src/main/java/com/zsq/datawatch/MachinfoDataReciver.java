@@ -40,8 +40,8 @@ public class MachinfoDataReciver implements InitializingBean {
 	    factory.setHost(default_host);
 	    Connection connection = factory.newConnection();
 	    Channel channel = connection.createChannel();
-	
-	    channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+	    channel.exchangeDeclare("Ex", "fanout");
+	    //channel.queueDeclare("EX", false, false, false, null);
 	    System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 	    
 	    Consumer consumer = new DefaultConsumer(channel) {
