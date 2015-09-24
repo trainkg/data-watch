@@ -15,22 +15,15 @@ public class Receiving {
 	private static final String EXCHANGE_NAME = "direct_logs";
 
 	public static void main(String[] argv) throws Exception {
-	    ConnectionFactory factory = new ConnectionFactory();
+		ConnectionFactory factory = new ConnectionFactory();
 	    factory.setHost("localhost");
 	    Connection connection = factory.newConnection();
 	    Channel channel = connection.createChannel();
 
-	    channel.exchangeDeclare(EXCHANGE_NAME, "direct");
+	    channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
 	    String queueName = channel.queueDeclare().getQueue();
+	    channel.queueBind(queueName, EXCHANGE_NAME, "");
 
-	    /*if (argv.length < 1){
-	      System.err.println("Usage: ReceiveLogsDirect [info] [warning] [error]");
-	      System.exit(1);
-	    }*/
-	    argv = new String[]{"K1","K2","K3"};
-	    for(String severity : argv){
-	      channel.queueBind(queueName, EXCHANGE_NAME, severity);
-	    }
 	    System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
 	    Consumer consumer = new DefaultConsumer(channel) {
@@ -38,7 +31,7 @@ public class Receiving {
 	      public void handleDelivery(String consumerTag, Envelope envelope,
 	                                 AMQP.BasicProperties properties, byte[] body) throws IOException {
 	        String message = new String(body, "UTF-8");
-	        System.out.println(" [x] Received '" + envelope.getRoutingKey() + "':'" + message + "'");
+	        System.out.println(" [x] Received '" + message + "'");
 	      }
 	    };
 	    channel.basicConsume(queueName, true, consumer);

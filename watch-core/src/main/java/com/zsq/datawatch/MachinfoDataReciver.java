@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
 import com.rabbitmq.client.AMQP;
@@ -21,7 +22,7 @@ import com.zsq.datawatch.entity.Machinfor;
  * @author peculiar.1@163.com
  * @version $ID: MachinfoDataReciver.java, V1.0.0 2015年9月19日 下午5:53:37 $
  */
-public class MachinfoDataReciver implements InitializingBean {
+public class MachinfoDataReciver implements InitializingBean,DisposableBean {
 	/**
 	 * MQ 传输队列
 	 */
@@ -29,6 +30,9 @@ public class MachinfoDataReciver implements InitializingBean {
 	private String default_host = "localhost";
 	private Logger log = LoggerFactory.getLogger(getClass());
 	private ReciverDataHander dataHander = new DefaultDataHander();
+	private ConnectionFactory factory;
+	private Connection connection;
+	private Channel channel;
 	
 	/**
 	 * 开始监听数据
@@ -36,12 +40,12 @@ public class MachinfoDataReciver implements InitializingBean {
 	public void startReciver() throws Exception{
 		log.info("开始监听服务采集数据");
 		
-		ConnectionFactory factory = new ConnectionFactory();
+		factory = new ConnectionFactory();
 	    factory.setHost(default_host);
-	    Connection connection = factory.newConnection();
-	    Channel channel = connection.createChannel();
-	    channel.exchangeDeclare("Ex", "fanout");
-	    //channel.queueDeclare("EX", false, false, false, null);
+	    connection = factory.newConnection();
+	    channel = connection.createChannel();
+	    //channel.exchangeDeclare("Ex", "fanout");
+	    channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 	    System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 	    
 	    Consumer consumer = new DefaultConsumer(channel) {
@@ -54,6 +58,15 @@ public class MachinfoDataReciver implements InitializingBean {
 	    };
 	    channel.basicConsume(QUEUE_NAME, true, consumer); //自动发送回执
 	}
+	
+	/**
+	 * 停止监听
+	 */
+	public void stopReciver() throws Exception{
+		channel.close();
+		connection.close();
+	}
+	
 	
 	/**
 	 * 默认的数据处理策略
@@ -71,7 +84,12 @@ public class MachinfoDataReciver implements InitializingBean {
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		log.info("[after-property] machinfo");
+		startReciver();
+	}
+
+	@Override
+	public void destroy() throws Exception {
+		stopReciver();
 	}
 
 }

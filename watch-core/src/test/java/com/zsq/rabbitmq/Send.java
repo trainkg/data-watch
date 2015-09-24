@@ -13,23 +13,20 @@ public class Send {
 	public static void main(String[] args) throws java.io.IOException,TimeoutException  {
 		try {
 			ConnectionFactory factory = new ConnectionFactory();
-			factory.setHost("localhost");
-			Connection connection = factory.newConnection();
-			Channel channel = connection.createChannel();
-			channel.exchangeDeclare(EXCHANGE_NAME, "direct");
-			
-			
-			//channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-			String message = "RANDOM info : int value "+ Math.random();
-			for (int i = 0; i < 10; i++) {
-				channel.basicPublish(EXCHANGE_NAME, "K3", null, ("["+i+"]"+message).getBytes());
-			}
-			System.out.println(" [x] Sent '" + message + "'");
-			
-			channel.close();
-			connection.close();
+	        factory.setHost("localhost");
+	        Connection connection = factory.newConnection();
+	        Channel channel = connection.createChannel();
+
+	        channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
+
+	        String message = "大家都是中国人,何必打打杀杀1";
+
+	        channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes());
+	        System.out.println(" [x] Sent '" + message + "'");
+
+	        channel.close();
+	        connection.close();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
