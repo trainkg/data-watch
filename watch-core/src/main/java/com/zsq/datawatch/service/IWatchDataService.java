@@ -9,11 +9,17 @@ import com.zsq.datawatch.entity.Machinfor;
  * @author peculiar.1@163.com
  * @version $ID: IWatchDateService.java, V1.0.0 2015年9月19日 下午5:51:24 $
  */
-public interface IWatchDateService {
+public interface IWatchDataService {
 
 	/**
 	 * 获取当前系统中当前所有机器的状态信息
 	 * @return
 	 */
 	public List<Machinfor> getCurrentMachInfo();
+	
+	/**
+	 * 保存一条指标信息
+	 * @param info
+	 */
+	public void saveInfo(Machinfor info);
 }

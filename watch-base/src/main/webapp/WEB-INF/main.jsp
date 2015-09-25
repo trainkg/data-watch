@@ -23,6 +23,46 @@
 	<script src="./zsq/base.js"></script>
     <script type="text/javascript">
     	require(['ctrl/base','bootstrap'],function(app){app('machine')})
+
+	    var webSocket =
+	      new WebSocket('ws://localhost/watch/iwatch');
+	 
+	    webSocket.onerror = function(event) {
+	      onError(event)
+	    };
+	 
+	    webSocket.onopen = function(event) {
+	      onOpen(event)
+	    };
+	 
+	    webSocket.onmessage = function(event) {
+	      onMessage(event)
+	    };
+	 
+	    function onMessage(event) {
+	      console.log(event);
+	      document.getElementById('messages').innerHTML
+	        += '<br />' + event.data;
+	    }
+	 
+	    function onOpen(event) {
+	      document.getElementById('messages').innerHTML
+	        = 'Connection established';
+	    }
+	 
+	    function onError(event) {
+	      alert(event.data?event.data:'服务器已经停止或者链接超时！');
+	    }
+	 
+	    function start() {
+	      webSocket.send('hello');
+	      return false;
+	    }
+
+	    window.onbeforeunload = function(){
+	    	webSocket.close();
+	    };
+
     </script>
   </head>
   <body>
@@ -55,7 +95,9 @@
 			<div class="pageContent">
 				
 			</div>
-			<div class="pageFooter"></div>
+			<div class="pageFooter">
+				<div id="messages"></div>
+			</div>
 		</div>
 	</div>
   </body>
