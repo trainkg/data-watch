@@ -1,5 +1,6 @@
 package com.zsq.datawatch.web;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import javax.websocket.EndpointConfig;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
+import javax.websocket.RemoteEndpoint;
 import javax.websocket.RemoteEndpoint.Basic;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
@@ -82,6 +84,13 @@ public class DataWatchServer{
 		@Override
 		public void dataHander(Machinfor info) {
 			seWatch.saveInfo(info);
+			for (Map.Entry<Session,RemoteEndpoint.Basic> entry : listeners.entrySet()) {
+				try {
+					entry.getValue().sendText("收到消息了");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 }
