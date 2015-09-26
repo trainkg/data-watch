@@ -9,7 +9,7 @@ import com.rabbitmq.client.ConnectionFactory;
 public class Send {
 	
 	private final static String QUEUE_NAME = "ZSQ_WATCH";
-	private static final String EXCHANGE_NAME = "direct_logs";
+	private static final String EXCHANGE_NAME = "ZSQ_WATCH";
 	public static void main(String[] args) throws java.io.IOException,TimeoutException  {
 		try {
 			ConnectionFactory factory = new ConnectionFactory();
@@ -23,7 +23,7 @@ public class Send {
 
 	        channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes());
 	        System.out.println(" [x] Sent '" + message + "'");
-
+	        
 	        channel.close();
 	        connection.close();
 		} catch (Exception e) {

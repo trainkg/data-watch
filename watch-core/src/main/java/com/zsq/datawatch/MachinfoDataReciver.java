@@ -29,7 +29,7 @@ public class MachinfoDataReciver implements InitializingBean, DisposableBean {
 	/**
 	 * MQ 传输队列
 	 */
-	private final static String QUEUE_NAME = "ZSQ_WATCH";
+	private final static String EXCHANGE_NAME = "ZSQ_WATCH";
 	private String default_host = "localhost";
 	private Logger log = LoggerFactory.getLogger(getClass());
 	private ReciverDataHander dataHander = new DefaultDataHander();
@@ -73,9 +73,10 @@ public class MachinfoDataReciver implements InitializingBean, DisposableBean {
 		factory.setHost(default_host);
 		connection = factory.newConnection();
 		channel = connection.createChannel();
-		// channel.exchangeDeclare("Ex", "fanout");
-		channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-		System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
+		
+		channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
+	    String queueName = channel.queueDeclare().getQueue();
+	    channel.queueBind(queueName, EXCHANGE_NAME, "");
 
 		Consumer consumer = new DefaultConsumer(channel) {
 			@Override
@@ -83,10 +84,10 @@ public class MachinfoDataReciver implements InitializingBean, DisposableBean {
 					AMQP.BasicProperties properties, byte[] body)
 					throws IOException {
 				String message = new String(body, "UTF-8");
-				System.out.println(" [x] Received '" + message + "'");
+				handerMessage(message);
 			}
 		};
-		channel.basicConsume(QUEUE_NAME, true, consumer); // 自动发送回执
+		channel.basicConsume(queueName, true, consumer); // 自动发送回执
 	}
 
 	/**

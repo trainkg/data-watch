@@ -12,7 +12,7 @@ import com.rabbitmq.client.Envelope;
 
 public class Receiving {
 	private final static String QUEUE_NAME = "ZSQ_WATCH";
-	private static final String EXCHANGE_NAME = "direct_logs";
+	private static final String EXCHANGE_NAME = "ZSQ_WATCH";
 
 	public static void main(String[] argv) throws Exception {
 		ConnectionFactory factory = new ConnectionFactory();
@@ -23,8 +23,10 @@ public class Receiving {
 	    channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
 	    String queueName = channel.queueDeclare().getQueue();
 	    channel.queueBind(queueName, EXCHANGE_NAME, "");
+	    
+//	    channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 
-	    System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
+//	    System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
 	    Consumer consumer = new DefaultConsumer(channel) {
 	      @Override

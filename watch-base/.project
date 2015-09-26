@@ -3,6 +3,7 @@
 	<name>watch-base</name>
 	<comment></comment>
 	<projects>
+		<project>watch-core</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
