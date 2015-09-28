@@ -18,11 +18,13 @@
     <![endif]-->
     <style type="text/css">
     	body { padding-top: 70px; }
+    	#machineInfo 。pageContent{position: relative;}
+    	#runInfo{position: absolute;right: 0;}
     </style>
     <script src="./zsq/r.js"></script>
 	<script src="./zsq/base.js"></script>
     <script type="text/javascript">
-    	require(['ctrl/base','bootstrap'],function(app){app('machine')})
+    	require(['ctrl/base','bootstrap'],function(app){/* app('machine') */})
 
 	    var webSocket =
 	      new WebSocket('ws://localhost/watch/iwatch');
@@ -69,6 +71,7 @@
 	<div class="container-fluid">
 	  	<nav class="navbar navbar-default navbar-fixed-top">
 		  <div class="container-fluid">
+		  
 	        <div class="navbar-header">
 	         <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-action" aria-expanded="false">
 	            <span class="sr-only">Toggle navigation</span>
@@ -90,10 +93,39 @@
 		</nav>
 		<div class="row" id="machineInfo">
 			<div class="pageHeader">
-				<p>#生产机器监控VERSION1.0</p>
+				<div></div>
 			</div>
 			<div class="pageContent">
-				
+				 <div id="runInfo">
+			  		<button class="btn btn-primary" type="button">
+					  运行状态 <span class="badge">4</span>
+					</button>
+			  		<button class="btn btn-primary" type="button">
+					  正常状态 <span class="badge">4</span>
+					</button>
+					<button class="btn btn-primary" type="button">
+					  调试状态 <span class="badge">4</span>
+					</button>
+					<button class="btn btn-primary" type="button">
+					  暂停状态 <span class="badge">4</span>
+					</button>	
+					<button class="btn btn-primary" type="button">
+					  停止状态 <span class="badge">4</span>
+					</button>			
+			  	</div>
+				 <!-- Nav tabs -->
+			  <ul class="nav nav-tabs" role="tablist">
+			    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">详细页</a></li>
+			    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">缩小版</a></li>
+			    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">高级版</a></li>
+			  </ul>
+			
+			  <!-- Tab panes -->
+			  <div class="tab-content">
+			    <div role="tabpanel" class="tab-pane active" id="home">HOME</div>
+			    <div role="tabpanel" class="tab-pane" id="profile">.22..</div>
+			    <div role="tabpanel" class="tab-pane" id="messages">..22.</div>
+			  </div>
 			</div>
 			<div class="pageFooter">
 				<div id="messages"></div>
