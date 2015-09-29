@@ -24,7 +24,7 @@
     <script src="./zsq/r.js"></script>
 	<script src="./zsq/base.js"></script>
     <script type="text/javascript">
-    	require(['ctrl/base','bootstrap'],function(app){/* app('machine') */})
+    	require(['ctrl/base','bootstrap'],function(app){app('machine')})
 
 	    var webSocket =
 	      new WebSocket('ws://localhost/watch/iwatch');
