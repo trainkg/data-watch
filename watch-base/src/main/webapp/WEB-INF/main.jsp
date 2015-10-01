@@ -122,9 +122,9 @@
 			
 			  <!-- Tab panes -->
 			  <div class="tab-content">
-			    <div role="tabpanel" class="tab-pane active" id="home">HOME</div>
-			    <div role="tabpanel" class="tab-pane" id="profile">.22..</div>
-			    <div role="tabpanel" class="tab-pane" id="messages">..22.</div>
+			    <div role="tabpanel" class="tab-pane active row" id="home"></div>
+			    <div role="tabpanel" class="tab-pane" id="profile"></div>
+			    <div role="tabpanel" class="tab-pane" id="messages"></div>
 			  </div>
 			</div>
 			<div class="pageFooter">

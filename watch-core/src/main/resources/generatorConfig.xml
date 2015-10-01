@@ -5,7 +5,7 @@
   <generatorConfiguration>
     <!-- <properties resource="generatorConfig.properties" /> -->
  
-    <classPathEntry location="D:/m_rep/repository/mysql/mysql-connector-java/5.1.24/mysql-connector-java-5.1.24.jar" />
+    <classPathEntry location="D:/m_rep/repository/mysql/mysql-connector-java/5.1.22/mysql-connector-java-5.1.22.jar" />
  
     <context id="XATL" targetRuntime="MyBatis3" defaultModelType="conditional">
         <!-- <plugin type="plugin.SelectByPagePlugin" /> -->
@@ -26,19 +26,19 @@
         </javaTypeResolver>
  
         <!-- targetProject:自动生成代码的位置 -->
-        <javaModelGenerator targetPackage="com.zsq.datawatch.entity" targetProject="E:\datawatch\data-watch\watch-core\src\main\java">
+        <javaModelGenerator targetPackage="com.zsq.datawatch.entity" targetProject="F:\data-watch\watch-core\src\main\java">
             <property name="enableSubPackages" value="true" />
         </javaModelGenerator>
  
-        <sqlMapGenerator targetPackage="com.zsq.datawatch.dao" targetProject="E:\datawatch\data-watch\watch-core\src\main\java">
+        <sqlMapGenerator targetPackage="com.zsq.datawatch.dao" targetProject="F:\data-watch\watch-core\src\main\java">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
  
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.zsq.datawatch.dao" targetProject="E:\datawatch\data-watch\watch-core\src\main\java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.zsq.datawatch.dao" targetProject="F:\data-watch\watch-core\src\main\java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
         <!-- tableName:用于自动生成代码的数据库表；domainObjectName:对应于数据库表的javaBean类名 -->
-        <table tableName="alarmtype" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+        <!-- <table tableName="alarmtype" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
             enableSelectByExample="false" selectByExampleQueryId="false"></table>
         <table tableName="machinfor" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
             enableSelectByExample="false" selectByExampleQueryId="false"></table>
@@ -47,6 +47,8 @@
         <table tableName="operstepmode" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
             enableSelectByExample="false" selectByExampleQueryId="false"></table>
         <table tableName="pctype" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+            enableSelectByExample="false" selectByExampleQueryId="false"></table> -->
+        <table tableName="machine" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
             enableSelectByExample="false" selectByExampleQueryId="false"></table>
     </context>
 </generatorConfiguration>

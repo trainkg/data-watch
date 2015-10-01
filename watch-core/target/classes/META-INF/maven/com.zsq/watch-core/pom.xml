@@ -5,6 +5,7 @@
     <artifactId>datawatch</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
+  <artifactId>watch-core</artifactId>
   <dependencies>
   	<dependency>
 	   <groupId>com.aliyun.openservices</groupId>
@@ -27,21 +28,11 @@
 	  <artifactId>spring-websocket</artifactId>
 	  <version>4.2.1.RELEASE</version>
 	</dependency>
-	<!-- <dependency>
-	  <groupId>org.springframework</groupId>
-	  <artifactId>spring-web</artifactId>
-	  <version>4.2.1.RELEASE</version>
-	</dependency> -->
 	<dependency>
 	  <groupId>org.springframework</groupId>
 	  <artifactId>spring-context-support</artifactId>
 	  <version>4.2.1.RELEASE</version>
 	</dependency>
-	<!-- <dependency>
-	  <groupId>org.springframework</groupId>
-	  <artifactId>spring-webmvc</artifactId>
-	  <version>4.2.1.RELEASE</version>
-	</dependency> -->
 	<dependency>
 		<groupId>com.fasterxml.jackson.core</groupId>
 		<artifactId>jackson-core</artifactId>
@@ -69,7 +60,6 @@
 		<version>4.2.1.RELEASE</version>
 	</dependency>
   </dependencies>
-  <artifactId>watch-core</artifactId>
   <build>
   	<plugins>
   		<plugin>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zsq.datawatch.dao.MachineMapper" >
+  <resultMap id="BaseResultMap" type="com.zsq.datawatch.entity.Machine" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="machnum" property="machnum" jdbcType="CHAR" />
+    <result column="machmac" property="machmac" jdbcType="CHAR" />
+    <result column="machip" property="machip" jdbcType="CHAR" />
+    <result column="machport" property="machport" jdbcType="INTEGER" />
+    <result column="machmode" property="machmode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, machnum, machmac, machip, machport, machmode
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from machine
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from machine
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zsq.datawatch.entity.Machine" >
+    insert into machine (id, machnum, machmac, 
+      machip, machport, machmode
+      )
+    values (#{id,jdbcType=INTEGER}, #{machnum,jdbcType=CHAR}, #{machmac,jdbcType=CHAR}, 
+      #{machip,jdbcType=CHAR}, #{machport,jdbcType=INTEGER}, #{machmode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zsq.datawatch.entity.Machine" >
+    insert into machine
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="machnum != null" >
+        machnum,
+      </if>
+      <if test="machmac != null" >
+        machmac,
+      </if>
+      <if test="machip != null" >
+        machip,
+      </if>
+      <if test="machport != null" >
+        machport,
+      </if>
+      <if test="machmode != null" >
+        machmode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="machnum != null" >
+        #{machnum,jdbcType=CHAR},
+      </if>
+      <if test="machmac != null" >
+        #{machmac,jdbcType=CHAR},
+      </if>
+      <if test="machip != null" >
+        #{machip,jdbcType=CHAR},
+      </if>
+      <if test="machport != null" >
+        #{machport,jdbcType=INTEGER},
+      </if>
+      <if test="machmode != null" >
+        #{machmode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zsq.datawatch.entity.Machine" >
+    update machine
+    <set >
+      <if test="machnum != null" >
+        machnum = #{machnum,jdbcType=CHAR},
+      </if>
+      <if test="machmac != null" >
+        machmac = #{machmac,jdbcType=CHAR},
+      </if>
+      <if test="machip != null" >
+        machip = #{machip,jdbcType=CHAR},
+      </if>
+      <if test="machport != null" >
+        machport = #{machport,jdbcType=INTEGER},
+      </if>
+      <if test="machmode != null" >
+        machmode = #{machmode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zsq.datawatch.entity.Machine" >
+    update machine
+    set machnum = #{machnum,jdbcType=CHAR},
+      machmac = #{machmac,jdbcType=CHAR},
+      machip = #{machip,jdbcType=CHAR},
+      machport = #{machport,jdbcType=INTEGER},
+      machmode = #{machmode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

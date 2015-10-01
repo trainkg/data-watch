@@ -1,29 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-      <artifactId>datawatch</artifactId>
-      <groupId>com.zsq</groupId>
-      <version>0.0.1-SNAPSHOT</version>
-  </parent>
-  <artifactId>watch-base</artifactId>
-  <packaging>war</packaging>
-  <name>base ui</name>
-  <build>
-  	<plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-archetype-plugin</artifactId>
-            <version>2.2</version>
-        </plugin>
-    </plugins>
-  </build>
-  <dependencies>
-  	<dependency>
-  		<groupId>com.zsq</groupId>
-  		<artifactId>watch-core</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
-  	</dependency>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>datawatch</artifactId>
+		<groupId>com.zsq</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>watch-base</artifactId>
+	<packaging>war</packaging>
+	<name>base ui</name>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-archetype-plugin</artifactId>
+				<version>2.2</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.0.6.v20130930</version>
+				<configuration>
+					<connectors>
+						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+							<port>80</port>
+						</connector>
+					</connectors>
+					<webAppConfig>
+						<contextPath> /watch</contextPath>
+					</webAppConfig>
+					<scanIntervalSeconds>0</scanIntervalSeconds>
+					<!-- 指定监控的扫描时间间隔，0为关闭jetty自身的热部署，主要是为了使用jrebel -->
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
   	<dependency>
   		<groupId>com.zsq</groupId>
   		<artifactId>watch-user</artifactId>
@@ -48,6 +62,11 @@
   		<groupId>mysql</groupId>
   		<artifactId>mysql-connector-java</artifactId>
   		<version>5.1.29</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.zsq</groupId>
+  		<artifactId>watch-core</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
   	</dependency>
   </dependencies>
 </project>
