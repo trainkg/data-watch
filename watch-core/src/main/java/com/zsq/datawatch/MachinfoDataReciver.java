@@ -130,6 +130,12 @@ public class MachinfoDataReciver implements InitializingBean, DisposableBean {
 		return dataHander;
 	}
 
+	/**
+	 * 设定消息接收器处理策略
+	 * 
+	 * @see ReciverDataHander
+	 * @param dataHander
+	 */
 	public void setDataHander(ReciverDataHander dataHander) {
 		this.dataHander = dataHander;
 	}

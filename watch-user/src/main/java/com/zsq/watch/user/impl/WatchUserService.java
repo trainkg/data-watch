@@ -8,7 +8,10 @@ import com.zsq.euser.impl.EUserServiceImpl;
 import com.zsq.euser.shiro.IShrioUserService;
 import com.zsq.watch.user.IWatchUserService;
 
-
+/**
+ * 
+ *  
+ */
 @Service
 @Transactional(readOnly = true)
 public class WatchUserService extends EUserServiceImpl implements IWatchUserService {
