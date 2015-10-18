@@ -17,10 +17,16 @@
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
 	   <property name="basePackage" value="com.zsq.datawatch.dao" />  
 	</bean>  
-	<bean id="mqMessageResciver" class="com.zsq.datawatch.MachinfoDataReciver" scope="singleton"></bean>
+	
+	<!-- rabbitMq 消息中间件信息接收器 -->
+	<!-- <bean id="mqMessageResciver" class="com.zsq.datawatch.MachinfoDataReciver" scope="singleton"></bean> -->
+	
+	<bean id="nettyMessageResciver" class="com.zsq.datawatch.NettyDataReciver" scope="singleton"></bean>
+	
 	<!-- 	<beans>
 		<jdbc:initialize-database data-source="dataSource" ignore-failures="ALL">
 			<jdbc:script location="classpath:euser/euser-init.sql"/>
 		</jdbc:initialize-database>
 	</beans> -->
+	
 </beans>

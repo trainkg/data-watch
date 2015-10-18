@@ -20,7 +20,7 @@ import com.rabbitmq.client.Envelope;
 import com.zsq.datawatch.entity.Machinfor;
 
 /**
- * 数据接收器
+ * Rabbit MQ 数据接收器
  * 
  * @author peculiar.1@163.com
  * @version $ID: MachinfoDataReciver.java, V1.0.0 2015年9月19日 下午5:53:37 $

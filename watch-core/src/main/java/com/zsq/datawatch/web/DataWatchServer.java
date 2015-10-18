@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.server.standard.SpringConfigurator;
 
-import com.zsq.datawatch.MachinfoDataReciver;
+import com.zsq.datawatch.NettyDataReciver;
 import com.zsq.datawatch.ReciverDataHander;
 import com.zsq.datawatch.entity.Machinfor;
 import com.zsq.datawatch.service.IWatchDataService;
@@ -38,7 +38,7 @@ public class DataWatchServer{
 	private boolean addLis = false;
 	
 	@Autowired
-	private MachinfoDataReciver machinfoDataReciver;
+	private NettyDataReciver machinfoDataReciver;
 	
 	@Autowired
 	private IWatchDataService seWatch;

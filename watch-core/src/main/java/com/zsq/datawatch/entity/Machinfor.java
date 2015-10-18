@@ -11,9 +11,19 @@ public class Machinfor {
 
 	private Machine machine;
 	/**
-	 * 机器版本号
+	 * 机器主版本号
 	 */
 	private String machnum;
+
+	/**
+	 * 副版本号
+	 */
+	private String minorVer;
+
+	/**
+	 * 消息类型
+	 */
+	private String msgType;
 
 	/**
 	 * 机器MAC地址
@@ -732,9 +742,24 @@ public class Machinfor {
 		this.machine = machine;
 	}
 
+	public String getMinorVer() {
+		return minorVer;
+	}
+
+	public void setMinorVer(String minorVer) {
+		this.minorVer = minorVer;
+	}
+
+	public String getMsgType() {
+		return msgType;
+	}
+
+	public void setMsgType(String msgType) {
+		this.msgType = msgType;
+	}
+
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return getMachip() + "-" + getMachmac();
 	}
 }
