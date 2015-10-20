@@ -86,7 +86,7 @@ define(['backbone','underscore',
 		 * R:infoDetail 
 		 */
 		_isExist:function(machinfo){
-			return this.context.item(machinfo.id);
+			return this.context.item[machinfo.machmac];
 		},
 		/*
 		 * 获取现有的所有的机器信息
