@@ -1,6 +1,5 @@
 package com.zsq.datawatch;
 
-import com.zsq.datawatch.entity.Machinfor;
 
 /**
  * 接收到的数据的处理策略
@@ -13,5 +12,5 @@ public interface ReciverDataHander {
 	 * 处理数据 
 	 * @param info
 	 */
-	void dataHander(Machinfor info);
+	void dataHander(String info);
 }

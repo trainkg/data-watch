@@ -19,7 +19,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.server.standard.SpringConfigurator;
 
-import com.zsq.datawatch.NettyDataReciver;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.zsq.datawatch.MachinfoDataReciver;
 import com.zsq.datawatch.ReciverDataHander;
 import com.zsq.datawatch.entity.Machinfor;
 import com.zsq.datawatch.service.IWatchDataService;
@@ -38,7 +41,7 @@ public class DataWatchServer{
 	private boolean addLis = false;
 	
 	@Autowired
-	private NettyDataReciver machinfoDataReciver;
+	private MachinfoDataReciver machinfoDataReciver;
 	
 	@Autowired
 	private IWatchDataService seWatch;
@@ -80,17 +83,46 @@ public class DataWatchServer{
 	 * @version $ID: MachinfoDataReciver.java, V1.0.0 2015年9月19日 下午5:55:25 $
 	 */
 	class DataWatchDataHander implements ReciverDataHander{
-
+		
+		private ObjectMapper mapper;
+		
+		public DataWatchDataHander() {
+			mapper = new ObjectMapper();
+			mapper.setSerializationInclusion(Include.NON_DEFAULT);
+			// 设置输入时忽略在JSON字符串中存在但Java对象实际没有的属性
+			mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+		}
+		
+		/*
+		 * 消息转换
+		 */
+		private Machinfor transforMachinfo(String message) {
+			Machinfor info = null;
+			try {
+				info = mapper.readValue(message, Machinfor.class);
+			} catch (Exception e) {
+				info = new Machinfor();
+				info.setMachip("machip -- ip");
+				info.setMachmac("10.23.36.4");
+				log.warn("读取传输信息格式失败", e);
+			}
+			return info;
+		}
+		
+		
 		@Override
-		public void dataHander(Machinfor info) {
-			seWatch.saveInfo(info);
+		public void dataHander(String info) {
+			Machinfor minfo = transforMachinfo(info);
+			seWatch.saveInfo(minfo);
 			for (Map.Entry<Session,RemoteEndpoint.Basic> entry : listeners.entrySet()) {
 				try {
-					entry.getValue().sendText("收到消息了");
+					entry.getValue().sendText(mapper.writeValueAsString(minfo));
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 			}
 		}
+
+		
 	}
 }

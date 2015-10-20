@@ -19,52 +19,14 @@
     <style type="text/css">
     	body { padding-top: 70px; }
     	#machineInfo 。pageContent{position: relative;}
-    	#runInfo{position: absolute;right: 0;}
+    	#runInfo{position: absolute;right: 16px;}
     </style>
     <script src="./zsq/r.js"></script>
 	<script src="./zsq/base.js"></script>
     <script type="text/javascript">
-    	require(['ctrl/base','bootstrap'],function(app){app('machine')})
-
-	    var webSocket =
-	      new WebSocket('ws://localhost/watch/iwatch');
-	 
-	    webSocket.onerror = function(event) {
-	      onError(event)
-	    };
-	 
-	    webSocket.onopen = function(event) {
-	      onOpen(event)
-	    };
-	 
-	    webSocket.onmessage = function(event) {
-	      onMessage(event)
-	    };
-	 
-	    function onMessage(event) {
-	      console.log(event);
-	      document.getElementById('messages').innerHTML
-	        += '<br />' + event.data;
-	    }
-	 
-	    function onOpen(event) {
-	      document.getElementById('messages').innerHTML
-	        = 'Connection established';
-	    }
-	 
-	    function onError(event) {
-	      alert(event.data?event.data:'服务器已经停止或者链接超时！');
-	    }
-	 
-	    function start() {
-	      webSocket.send('hello');
-	      return false;
-	    }
-
-	    window.onbeforeunload = function(){
-	    	webSocket.close();
-	    };
-
+    	require(['ctrl/base','bootstrap'],function(app){
+    		app('machine');
+    	})
     </script>
   </head>
   <body>
@@ -95,7 +57,7 @@
 			<div class="pageHeader">
 				<div></div>
 			</div>
-			<div class="pageContent">
+			<div class="pageContent col-md-12">
 				 <div id="runInfo">
 			  		<button class="btn btn-primary" type="button">
 					  运行状态 <span class="badge">4</span>
@@ -116,15 +78,15 @@
 				 <!-- Nav tabs -->
 			  <ul class="nav nav-tabs" role="tablist">
 			    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">详细页</a></li>
-			    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">缩小版</a></li>
-			    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">高级版</a></li>
+			    <!-- <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">缩小版</a></li>
+			    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">高级版</a></li> -->
 			  </ul>
 			
 			  <!-- Tab panes -->
-			  <div class="tab-content">
-			    <div role="tabpanel" class="tab-pane active row" id="home"></div>
-			    <div role="tabpanel" class="tab-pane" id="profile"></div>
-			    <div role="tabpanel" class="tab-pane" id="messages"></div>
+			  <div class="tab-content row">
+			    <div role="tabpanel" class="tab-pane active" id="home"></div>
+			    <!-- <div role="tabpanel" class="tab-pane" id="profile"></div>
+			    <div role="tabpanel" class="tab-pane" id="messages"></div> -->
 			  </div>
 			</div>
 			<div class="pageFooter">
