@@ -77,7 +77,7 @@ define(['backbone','underscore',
 				detail.reRender(machinfo);
 			}else{
 				detail = new infoDetail(machinfo);
-				this.context.item[machinfo.machmac] = machinfo;
+				this.context.item[machinfo.machmac] = detail;
 				this.$el.append(detail.render());
 			}
 		},
