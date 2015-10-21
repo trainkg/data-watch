@@ -1,6 +1,7 @@
 package com.zsq.datawatch.web;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -102,7 +103,7 @@ public class DataWatchServer{
 				info = mapper.readValue(message, Machinfor.class);
 			} catch (Exception e) {
 				info = new Machinfor();
-				info.setMachip("machip -- ip");
+				info.setMachip("machip"+new Date().getTime());
 				info.setMachmac("10.23.36.4");
 				log.warn("读取传输信息格式失败", e);
 			}

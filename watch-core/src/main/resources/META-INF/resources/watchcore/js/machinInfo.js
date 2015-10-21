@@ -34,7 +34,10 @@ define(['backbone','underscore',
 		reRender:function(info){
 			if(info){
 				this.context.data = info;
-				this.render();
+				var view = $(this.render());
+				console.log(view.html);
+				console.log(this.$el);
+				this.$el.html(view.html());
 			}
 		},
 		afterRender:function(){},
@@ -50,6 +53,7 @@ define(['backbone','underscore',
 		// 不进行监控的列表： type:array|function
 		,excludeId:[]
 	};
+
 	/**
 	 * 监控系统总页面
 	 * 
@@ -78,7 +82,9 @@ define(['backbone','underscore',
 			}else{
 				detail = new infoDetail(machinfo);
 				this.context.item[machinfo.machmac] = detail;
-				this.$el.append(detail.render());
+				var $el = $(detail.render());
+				this.$el.append($el);
+				detail.setElement($el);
 			}
 		},
 		/*
