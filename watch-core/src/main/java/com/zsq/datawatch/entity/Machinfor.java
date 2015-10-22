@@ -1,5 +1,10 @@
 package com.zsq.datawatch.entity;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 /**
  * 机器信息
  * 
@@ -19,11 +24,21 @@ public class Machinfor {
 	 * 副版本号
 	 */
 	private String minorVer;
+	
+	/**
+	 * 机器模式/设备类型
+	 */
+	private String machmode;
 
 	/**
 	 * 消息类型
 	 */
 	private String msgType;
+	
+	/**
+	 * 消息长度
+	 */
+	private String contentLength;
 
 	/**
 	 * 机器MAC地址
@@ -39,11 +54,21 @@ public class Machinfor {
 	 * 机器端口
 	 */
 	private Integer machport;
+	
+	/**
+	 * COM1通讯状态ON/OFF
+	 */
+	private Integer com1statue;
 
 	/**
-	 * 机器模式
+	 * COM2通讯状态ON/OFF
 	 */
-	private String machmode;
+	private Integer com2statue;
+	
+	/**
+	 * AUST伺服器通讯状态ON/OFF
+	 */
+	private Integer auststatue;
 
 	/**
 	 * 马达状态ON/OFF
@@ -54,64 +79,49 @@ public class Machinfor {
 	 * 电热状态ON/OFF
 	 */
 	private String machheartstatue;
-
+	    
 	/**
-	 * COM1通讯状态ON/OFF
-	 */
-	private Integer com1statue;
-
-	/**
-	 * COM2通讯状态ON/OFF
-	 */
-	private Integer com2statue;
-
-	/**
-	 * AUST伺服器通讯状态ON/OFF
-	 */
-	private Integer auststatue;
-
-	/**
-	 * 料温一段状态
+	 * 料温一段选用状态
 	 */
 	private String temper1statue;
 
 	/**
-	 * 料温二段状态
+	 * 料温二段选用状态
 	 */
 	private String temper2statue;
 
 	/**
-	 * 料温三段状态
+	 * 料温三段选用状态
 	 */
 	private String temper3statue;
 
 	/**
-	 * 料温四段状态
+	 * 料温四段选用状态
 	 */
 	private String temper4statue;
 
 	/**
-	 * 料温五段状态
+	 * 料温五段选用状态
 	 */
 	private String temper5statue;
 
 	/**
-	 * 料温六段状态
+	 * 料温六段选用状态
 	 */
 	private String temper6statue;
 
 	/**
-	 * 料温七段状态
+	 * 料温七段选用状态
 	 */
 	private String temper7statue;
 
 	/**
-	 * 料温八段状态
+	 * 料温八段选用状态
 	 */
 	private String temper8statue;
 
 	/**
-	 * 料温九段状态
+	 * 料温九段选用状态
 	 */
 	private String temper9statue;
 
@@ -205,33 +215,41 @@ public class Machinfor {
 	 */
 	private Integer ruler8value;
 	/**
-	 * 机器状态1
+	 * 料温状态1
 	 */
 	private Integer oper1value;
 	/**
-	 * 机器状态2
+	 * 料温状态2
 	 */
 	private Integer oper2value;
 	/**
-	 * 机器状态3
+	 * 料温状态3
 	 */
 	private Integer oper3value;
 	/**
-	 * 机器状态4
+	 * 料温状态4
 	 */
 	private Integer oper4value;
 	/**
-	 * 机器状态5
+	 * 料温状态5
 	 */
 	private Integer oper5value;
 	/**
-	 * 机器状态6
+	 * 料温状态6
 	 */
 	private Integer oper6value;
 	/**
-	 * 机器状态7
+	 * 料温状态7
 	 */
 	private Integer oper7value;
+	/**
+	 * 料温状态8
+	 */
+	private Integer oper8value;
+	/**
+	 * 料温状态8
+	 */
+	private Integer oper9value;
 
 	public Integer getId() {
 		return id;
@@ -756,6 +774,30 @@ public class Machinfor {
 
 	public void setMsgType(String msgType) {
 		this.msgType = msgType;
+	}
+	
+	public String getContentLength() {
+		return contentLength;
+	}
+
+	public void setContentLength(String contentLength) {
+		this.contentLength = contentLength;
+	}
+	
+	public Integer getOper8value() {
+		return oper8value;
+	}
+
+	public void setOper8value(Integer oper8value) {
+		this.oper8value = oper8value;
+	}
+
+	public Integer getOper9value() {
+		return oper9value;
+	}
+
+	public void setOper9value(Integer oper9value) {
+		this.oper9value = oper9value;
 	}
 
 	@Override

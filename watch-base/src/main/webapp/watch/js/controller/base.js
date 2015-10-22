@@ -51,8 +51,7 @@ define(['jquery','backbone','plugins/bjui/bjui-extends'],function($,Backbone){
 	    }
 	 
 	    function onOpen(event) {
-	      document.getElementById('home').innerHTML
-	        = '成功链接服务器~';
+	      //document.getElementById('home').innerHTML = '成功链接服务器~';
 	    }
 	 
 	    function onError(event) {
@@ -67,7 +66,6 @@ define(['jquery','backbone','plugins/bjui/bjui-extends'],function($,Backbone){
 	    window.onbeforeunload = function(){
 	    	webSocket.close();
 	    };
- 		    
  		    
  		require(['watchcore/js/machinInfo.js'],function(Machine){
  			var config = {

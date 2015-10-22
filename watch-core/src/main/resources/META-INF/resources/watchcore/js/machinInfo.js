@@ -34,10 +34,8 @@ define(['backbone','underscore',
 		reRender:function(info){
 			if(info){
 				this.context.data = info;
-				var view = $(this.render());
-				console.log(view.html);
-				console.log(this.$el);
-				this.$el.html(view.html());
+				var content = this.render();
+				this.$el.html($(content).html());
 			}
 		},
 		afterRender:function(){},
