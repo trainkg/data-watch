@@ -1,13 +1,6 @@
 package com.zsq.datawatch.entity;
 
-/**
- * 机器信息
- * 
- * @author peculiar.1@163.com
- * @version $ID: Machinfor.java, V1.0.0 2015年10月1日 下午1:35:10 $
- */
 public class Machinfor {
-	
     private Integer id;
 
     private String machnum;
