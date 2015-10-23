@@ -28,7 +28,7 @@ public class MachinfoDataReciver implements InitializingBean, DisposableBean {
 	private final static String EXCHANGE_NAME = "ZSQ_WATCH";
 	private String default_host = "localhost";
 	private Logger log = LoggerFactory.getLogger(getClass());
-	private ReciverDataHander dataHander = new DefaultDataHander();
+	private ReciverDataHander dataHander;
 	private ConnectionFactory factory;
 	private Connection connection;
 	private Channel channel;
@@ -38,7 +38,9 @@ public class MachinfoDataReciver implements InitializingBean, DisposableBean {
 	 * @param message
 	 */
 	public void handerMessage(String message) {
-		dataHander.dataHander(message);
+		if(dataHander != null){
+			dataHander.dataHander(message);
+		}
 	}
 
 	/**
@@ -74,20 +76,6 @@ public class MachinfoDataReciver implements InitializingBean, DisposableBean {
 	public void stopReciver() throws Exception {
 		channel.close();
 		connection.close();
-	}
-
-	/**
-	 * 默认的数据处理策略
-	 * 
-	 * @author peculiar.1@163.com
-	 * @version $ID: MachinfoDataReciver.java, V1.0.0 2015年9月19日 下午5:55:25 $
-	 */
-	class DefaultDataHander implements ReciverDataHander {
-
-		@Override
-		public void dataHander(String info) {
-			System.out.println(info);
-		}
 	}
 
 	@Override

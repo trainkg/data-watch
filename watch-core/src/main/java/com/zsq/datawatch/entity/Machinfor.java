@@ -1,5 +1,7 @@
 package com.zsq.datawatch.entity;
 
+import java.util.Date;
+
 public class Machinfor {
     private Integer id;
 
@@ -100,6 +102,8 @@ public class Machinfor {
     private Integer oper8value;
 
     private Integer oper9value;
+
+    private Date reciverdate;
 
     public Integer getId() {
         return id;
@@ -499,5 +503,13 @@ public class Machinfor {
 
     public void setOper9value(Integer oper9value) {
         this.oper9value = oper9value;
+    }
+
+    public Date getReciverdate() {
+        return reciverdate;
+    }
+
+    public void setReciverdate(Date reciverdate) {
+        this.reciverdate = reciverdate;
     }
 }

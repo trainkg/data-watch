@@ -85,6 +85,14 @@ public class DataWatchServer{
 	 */
 	class DataWatchDataHander implements ReciverDataHander{
 		
+		/**
+		 * 记录同一个MAC地址机器上一次接受到的数据时点<br>
+		 * 通过事件间隔策略处理接受到的数据信息
+		 */
+		private Map<String,Long> map = new HashMap<String,Long>();
+		
+		public static final int SPLIT_TIME = 5 * 60 * 1000;
+		
 		private ObjectMapper mapper;
 		
 		public DataWatchDataHander() {
@@ -114,16 +122,39 @@ public class DataWatchServer{
 		@Override
 		public void dataHander(String info) {
 			Machinfor minfo = transforMachinfo(info);
-			seWatch.saveInfo(minfo);
+			if(minfo != null) _dataHander(minfo);
+		}
+
+		@Override
+		public void dataHander(Machinfor info) {
+			if(info != null) _dataHander(info);
+		}
+		
+		private void _dataHander(Machinfor minfo) {
+			boolean needSave = Boolean.FALSE;
+			Date date = new Date();
+			String mac = minfo.getMachmac();
+			if(map.get(mac) == null || map.get(mac) + SPLIT_TIME < date.getTime()){
+				needSave = Boolean.TRUE;
+				map.put(mac, date.getTime());
+				
+			}
+			
+			if(needSave){
+				seWatch.saveInfo(minfo);
+			}
+			
 			for (Map.Entry<Session,RemoteEndpoint.Basic> entry : listeners.entrySet()) {
 				try {
 					entry.getValue().sendText(mapper.writeValueAsString(minfo));
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-			}
+			} 
 		}
 
-		
 	}
+
+
+	
 }

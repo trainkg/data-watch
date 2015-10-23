@@ -72,6 +72,7 @@ public class NettyDataReciver implements InitializingBean, DisposableBean {
 		@Override
 		public void run() {
 			Machinfor info = transforFromPacket(packet);
+			dataHander.dataHander(info);
 		}
 		
 	}
