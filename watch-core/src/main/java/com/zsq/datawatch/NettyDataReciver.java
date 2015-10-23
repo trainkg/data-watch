@@ -99,13 +99,13 @@ public class NettyDataReciver implements InitializingBean, DisposableBean {
 		int x = 0;
 		//头信息
 		info.setMachnum(new String(Arrays.copyOfRange(bytes, x, x+=2)));
-		info.setMinorVer(new String(Arrays.copyOfRange(bytes, x, x+=2)));
+		info.setMinorver(new String(Arrays.copyOfRange(bytes, x, x+=2)));
 		info.setMachmode(new String(Arrays.copyOfRange(bytes, x, x+=2)));
-		info.setMsgType(new String(Arrays.copyOfRange(bytes, x, x+=2)));
+		info.setMsgtype(new String(Arrays.copyOfRange(bytes, x, x+=2)));
 		info.setMachmac(new String(Arrays.copyOfRange(bytes, x, x+=20)));
 		info.setMachip(new String(Arrays.copyOfRange(bytes, x, x+=16)));
 		info.setMachport(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=2))));
-		info.setContentLength(new String(Arrays.copyOfRange(bytes, x, x+=2)));
+		info.setContentlength(new String(Arrays.copyOfRange(bytes, x, x+=2)));
 		
 		//结构体
 		info.setCom1statue(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));

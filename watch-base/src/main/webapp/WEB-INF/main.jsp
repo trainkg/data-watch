@@ -59,21 +59,15 @@
 			</div>
 			<div class="pageContent col-md-12">
 				 <div id="runInfo">
-			  		<button class="btn btn-primary" type="button">
+			  		<button class="btn btn-primary" id="stopmc" type="button">
 					  运行状态 <span class="badge">4</span>
 					</button>
-			  		<button class="btn btn-primary" type="button">
-					  正常状态 <span class="badge">4</span>
-					</button>
-					<button class="btn btn-primary" type="button">
+					<button class="btn btn-primary" id="productmc" type="button">
 					  调试状态 <span class="badge">4</span>
 					</button>
-					<button class="btn btn-primary" type="button">
+					<button class="btn btn-primary" id="warnmc" type="button">
 					  暂停状态 <span class="badge">4</span>
 					</button>	
-					<button class="btn btn-primary" type="button">
-					  停止状态 <span class="badge">4</span>
-					</button>			
 			  	</div>
 				 <!-- Nav tabs -->
 			  <ul class="nav nav-tabs" role="tablist">

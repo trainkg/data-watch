@@ -20,8 +20,10 @@ public class Send {
 	        channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
 
 	        String message = "大家都是中国人,何必打打杀杀1";
-
-	        channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes());
+	        for (int i = 0; i < 10; i++) {
+	        	channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes());
+	        	Thread.sleep(1000);
+			}
 	        System.out.println(" [x] Sent '" + message + "'");
 	        
 	        channel.close();

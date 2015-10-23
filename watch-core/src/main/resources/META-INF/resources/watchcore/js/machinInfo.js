@@ -69,6 +69,7 @@ define(['backbone','underscore',
 		render:function(){
 			var that = this;
 		},
+		
 		afterRender:function(){},
 		/*
 		 *添加一个机器到监控页面 
@@ -103,7 +104,10 @@ define(['backbone','underscore',
 		 * 根据机器ID删除机器信息
 		 */
 		removeMachinfo:function(machine_id){
-			
+			var r = [];
+			_.each(this.context.item,function(){
+				
+			});
 		},
 		/*
 		 * 初始加载系统所有机器信息
@@ -114,6 +118,7 @@ define(['backbone','underscore',
 				for(var machine in ms){
 					this.addMachinfo(machine);
 				}
+				this.renderMachineState()
 			}
 		},
 		/*
@@ -134,6 +139,30 @@ define(['backbone','underscore',
 		 */
 		getMachinfo:function(status){
 			
+		},
+		
+		/*
+		 * 根据当前机器信息渲染状态信息
+		 */
+		renderMachineState:function(){
+			var a = [0,1,2];//实时状态
+			for (var i = 0; i < a.length; i++) {
+				var status = a[i];
+				var mlist = this.getMachinfo(status);
+				switch (status) {
+				case '0':
+					this.$el.find("#stopmc span").text(mlist.length);
+					break;
+				case '1':
+					this.$el.find("#productmc span").text(mlist.length);
+					break;
+				case '2':
+					this.$el.find("#warnmc span").text(mlist.length);
+					break;
+				default:
+					break;
+				}
+			}
 		}
 	});
 	
