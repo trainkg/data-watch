@@ -21,7 +21,7 @@ define(['backbone','underscore',
 		context:{},
 		_template:_.template(detailtpl),
 		initialize:function(info){
-			this.context = _.extend(default_detail_context,{data:info});
+			this.context = _.extend({},default_detail_context,{data:info});
 			
 			this.beforeRender();
 			this.render();
@@ -74,7 +74,7 @@ define(['backbone','underscore',
 		/*
 		 *添加一个机器到监控页面 
 		 */
-		addMachinfo:function(machinfo){
+		addMachinfo:function(machinfo,updateStatue){
 			var detail = this._isExist(machinfo);
 			if(detail){
 				detail.reRender(machinfo);
@@ -84,6 +84,9 @@ define(['backbone','underscore',
 				var $el = $(detail.render());
 				this.$el.append($el);
 				detail.setElement($el);
+			}
+			if(updateStatue){
+				this.renderMachineState();
 			}
 		},
 		/*
@@ -118,7 +121,7 @@ define(['backbone','underscore',
 				for(var machine in ms){
 					this.addMachinfo(machine);
 				}
-				this.renderMachineState()
+				this.renderMachineState();
 			}
 		},
 		/*
@@ -138,7 +141,13 @@ define(['backbone','underscore',
 		 * R:Array
 		 */
 		getMachinfo:function(status){
-			
+			var arr = [];
+			_.each(this.context.item, function(element, index, list){
+				if(element.getData().msgtype == status){
+					arr.push(element);
+				}
+			});
+			return arr;
 		},
 		
 		/*
@@ -150,14 +159,14 @@ define(['backbone','underscore',
 				var status = a[i];
 				var mlist = this.getMachinfo(status);
 				switch (status) {
-				case '0':
-					this.$el.find("#stopmc span").text(mlist.length);
+				case 0:
+					$("#stopmc span").text(mlist.length);
 					break;
-				case '1':
-					this.$el.find("#productmc span").text(mlist.length);
+				case 1:
+					$("#productmc span").text(mlist.length);
 					break;
-				case '2':
-					this.$el.find("#warnmc span").text(mlist.length);
+				case 2:
+					$("#warnmc span").text(mlist.length);
 					break;
 				default:
 					break;

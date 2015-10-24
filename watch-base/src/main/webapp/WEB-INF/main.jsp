@@ -60,13 +60,13 @@
 			<div class="pageContent col-md-12">
 				 <div id="runInfo">
 			  		<button class="btn btn-primary" id="stopmc" type="button">
-					  运行状态 <span class="badge">4</span>
+					  运行状态 <span class="badge">0</span>
 					</button>
 					<button class="btn btn-primary" id="productmc" type="button">
-					  调试状态 <span class="badge">4</span>
+					  调试状态 <span class="badge">0</span>
 					</button>
 					<button class="btn btn-primary" id="warnmc" type="button">
-					  暂停状态 <span class="badge">4</span>
+					  暂停状态 <span class="badge">0</span>
 					</button>	
 			  	</div>
 				 <!-- Nav tabs -->

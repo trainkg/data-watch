@@ -46,7 +46,7 @@ define(['jquery','backbone','plugins/bjui/bjui-extends'],function($,Backbone){
 	    function onMessage(event) {
 	      if(machineContext){
 	    	  var info = $.parseJSON(event.data);
-	    	  machineContext.addMachinfo(info);
+	    	  machineContext.addMachinfo(info,true);
 	      }
 	    }
 	 
