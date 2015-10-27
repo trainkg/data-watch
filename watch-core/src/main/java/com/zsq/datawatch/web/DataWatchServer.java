@@ -112,8 +112,8 @@ public class DataWatchServer{
 			} catch (Exception e) {
 				info = new Machinfor();
 				info.setMachip("machip"+new Date().getTime());
-				info.setMachmac("10.23.36.2");
-				info.setMsgtype("2");
+				info.setMachmac("10.23.36.1");
+				info.setMsgtype("1");
 				log.warn("读取传输信息格式失败", e);
 			}
 			return info;
