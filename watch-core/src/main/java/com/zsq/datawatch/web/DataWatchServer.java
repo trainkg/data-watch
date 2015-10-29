@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import javax.websocket.CloseReason;
 import javax.websocket.EndpointConfig;
@@ -97,7 +98,7 @@ public class DataWatchServer{
 		
 		public DataWatchDataHander() {
 			mapper = new ObjectMapper();
-			mapper.setSerializationInclusion(Include.NON_DEFAULT);
+			mapper.setSerializationInclusion(Include.NON_NULL);
 			// 设置输入时忽略在JSON字符串中存在但Java对象实际没有的属性
 			mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 		}
@@ -111,9 +112,12 @@ public class DataWatchServer{
 				info = mapper.readValue(message, Machinfor.class);
 			} catch (Exception e) {
 				info = new Machinfor();
-				info.setMachip("machip"+new Date().getTime());
-				info.setMachmac("10.23.36.1");
-				info.setMsgtype("1");
+				int ip = new Random().nextInt(10);
+				info.setMachip("machip"+ip);
+				info.setMachmac("10.23.36."+ip);
+				System.out.println(info.getMachmac());
+				info.setMsgtype(String.valueOf(new Random().nextInt(3)));
+				info.setMachmode("1");
 				log.warn("读取传输信息格式失败", e);
 			}
 			return info;

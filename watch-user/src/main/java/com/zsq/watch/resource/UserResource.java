@@ -30,7 +30,7 @@ public class UserResource {
 		 r.setStatus("200");
 		 r.setMessage("success");
 		 try {
-			seuser.login("admin", "admin");
+			seuser.login(loginForm.getUserName(), loginForm.getPassword());
 		 } catch (AuthenticationException e) {
 			r.setStatus("503");
 			r.setMessage("无效的账户");

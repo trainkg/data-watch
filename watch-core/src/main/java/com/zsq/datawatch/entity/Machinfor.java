@@ -19,11 +19,11 @@ public class Machinfor {
 
     private String machheartstatue;
 
-    private Integer com1statue;
+    private Integer com1statue = 1;
 
     private Integer com2statue;
 
-    private Integer auststatue;
+    private Integer auststatue = 1;
 
     private String temper1statue;
 
@@ -105,6 +105,12 @@ public class Machinfor {
 
     private Date reciverdate;
 
+    /*----------------------------------------------------------------------*/
+    private Integer opermode 		= 1;
+    private Integer operstepmode  	= 2;
+    private Integer alarmtype		= 2;
+    private Integer dataindex 		= 1;
+    /*----------------------------------------------------------------------*/
     public Integer getId() {
         return id;
     }
@@ -512,4 +518,37 @@ public class Machinfor {
     public void setReciverdate(Date reciverdate) {
         this.reciverdate = reciverdate;
     }
+
+	public Integer getOpermode() {
+		return opermode;
+	}
+
+	public void setOpermode(Integer opermode) {
+		this.opermode = opermode;
+	}
+
+	public Integer getOperstepmode() {
+		return operstepmode;
+	}
+
+	public void setOperstepmode(Integer operstepmode) {
+		this.operstepmode = operstepmode;
+	}
+
+	public Integer getAlarmtype() {
+		return alarmtype;
+	}
+
+	public void setAlarmtype(Integer alarmtype) {
+		this.alarmtype = alarmtype;
+	}
+
+	public Integer getDataindex() {
+		return dataindex;
+	}
+
+	public void setDataindex(Integer dataindex) {
+		this.dataindex = dataindex;
+	}
+	
 }

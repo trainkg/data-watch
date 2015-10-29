@@ -20,6 +20,12 @@
     	body { padding-top: 70px; }
     	#machineInfo 。pageContent{position: relative;}
     	#runInfo{position: absolute;right: 16px;}
+    	/*color*/
+    	.red{background-color:red !important;border-color:red}
+		.orange{background-color:orange !important;border-color:orange}
+		.blue{background-color:blue !important;border-color: blue;}
+		.green{background-color:green !important;border-color: green}
+		.gray{background-color:gray !important;border-color: gray}
     </style>
     <script src="./zsq/r.js"></script>
 	<script src="./zsq/base.js"></script>
@@ -59,14 +65,14 @@
 			</div>
 			<div class="pageContent col-md-12">
 				 <div id="runInfo">
-			  		<button class="btn btn-primary" id="stopmc" type="button">
-					  运行状态 <span class="badge">0</span>
+			  		<button class="btn btn-primary gray" id="stopmc" type="button">
+					  离线 <span class="badge">0</span>
 					</button>
-					<button class="btn btn-primary" id="productmc" type="button">
-					  调试状态 <span class="badge">0</span>
+					<button class="btn btn-primary green" id="productmc" type="button">
+					  正常 <span class="badge">0</span>
 					</button>
-					<button class="btn btn-primary" id="warnmc" type="button">
-					  暂停状态 <span class="badge">0</span>
+					<button class="btn btn-primary red" id="warnmc" type="button">
+					  告警 <span class="badge">0</span>
 					</button>	
 			  	</div>
 				 <!-- Nav tabs -->
