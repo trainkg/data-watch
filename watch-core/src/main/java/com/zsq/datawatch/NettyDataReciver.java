@@ -161,7 +161,7 @@ public class NettyDataReciver implements InitializingBean, DisposableBean {
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		mapper = new ObjectMapper();
-		mapper.setSerializationInclusion(Include.NON_DEFAULT);
+		mapper.setSerializationInclusion(Include.NON_NULL);
 		// 设置输入时忽略在JSON字符串中存在但Java对象实际没有的属性
 		mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 		startReciver();
