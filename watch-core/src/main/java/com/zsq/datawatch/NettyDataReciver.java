@@ -106,7 +106,7 @@ public class NettyDataReciver implements InitializingBean, DisposableBean {
 		info.setMachmac(new String(Arrays.copyOfRange(bytes, x, x+=20)));
 		info.setMachip(new String(Arrays.copyOfRange(bytes, x, x+=16)));
 		info.setMachport(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=2))));
-		info.setContentlength(new String(Arrays.copyOfRange(bytes, x, x+=2)));
+		info.setContentlength(new String(Arrays.copyOfRange(bytes, x, x+=2)));//48
 		
 		//结构体
 		info.setCom1statue(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
@@ -153,7 +153,7 @@ public class NettyDataReciver implements InitializingBean, DisposableBean {
 		info.setRuler5value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
 		info.setRuler6value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
 		info.setRuler7value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
-		info.setRuler8value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4)))); //第八根电子尺
+		info.setRuler8value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4)))); //第八根电子尺 
 		
 		return info;
 	}

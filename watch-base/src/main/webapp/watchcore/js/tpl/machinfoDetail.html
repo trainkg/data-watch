@@ -1,7 +1,6 @@
 <div class="m-machinfor-detail col-md-3" >
 	<table class="table table-bordered">
 		<tr>
-			<%console.log(data)%>
 			<!-- <td title="MAC地址"><%=data.machmac%></td> -->
 			<td title="机器IP" width="50%"><%=data.machip%></td>
 			<td title="机器类型" width="50%">
@@ -88,15 +87,15 @@
 				<img src="/watch/watchcore/images/com1-unc.bmp">
 				<%}%>
 				<%if(data.com1statue == 1){%>
-				<img src="/watch/watchcore/images/com1-c.bmp">
+				<img src="/watchcore/images/com1-c.bmp">
 				<%}%>
 			</td>
 			<td title="伺服器连接状态">
 				<%if(data.auststatue == 0){%>
-				<img src="/watch/watchcore/images/a-uc.bmp">
+				<img src="/watchcore/images/a-uc.bmp">
 				<%}%>
 				<%if(data.auststatue == 1){%>
-				<img src="/watch/watchcore/images/a-c.bmp">
+				<img src="/watchcore/images/a-c.bmp">
 				<%}%>
 			</td>
 		</tr>
@@ -107,7 +106,7 @@
 				<%if(data.msgtype == 0){%>class='gray'<%}%>
 				<%if(data.msgtype == 2){%>class='red'<%}%>
 				>
-					<img width="130" src="/watch/watchcore/images/machine.png">
+					<img width="130" src="/watchcore/images/machine.png">
 				</div>
 			</td>
 		</tr>

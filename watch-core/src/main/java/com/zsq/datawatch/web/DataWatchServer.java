@@ -24,7 +24,7 @@ import org.springframework.web.socket.server.standard.SpringConfigurator;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.zsq.datawatch.MachinfoDataReciver;
+import com.zsq.datawatch.NettyDataReciver;
 import com.zsq.datawatch.ReciverDataHander;
 import com.zsq.datawatch.entity.Machinfor;
 import com.zsq.datawatch.service.IWatchDataService;
@@ -43,7 +43,7 @@ public class DataWatchServer{
 	private boolean addLis = false;
 	
 	@Autowired
-	private MachinfoDataReciver machinfoDataReciver;
+	private NettyDataReciver machinfoDataReciver;
 	
 	@Autowired
 	private IWatchDataService seWatch;

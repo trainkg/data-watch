@@ -19,7 +19,7 @@
 	</bean>  
 	
 	<!-- rabbitMq 消息中间件信息接收器 -->
-	<bean id="mqMessageResciver" class="com.zsq.datawatch.MachinfoDataReciver" scope="singleton"></bean>
+	<!-- <bean id="mqMessageResciver" class="com.zsq.datawatch.MachinfoDataReciver" scope="singleton"></bean> -->
 	
 	<bean id="nettyMessageResciver" class="com.zsq.datawatch.NettyDataReciver" scope="singleton"></bean>
 	

@@ -29,7 +29,7 @@ define(['jquery','backbone','plugins/bjui/bjui-extends'],function($,Backbone){
  		var machineContext;
  		
 		var webSocket =
-	      new WebSocket('ws://localhost/watch/iwatch');
+	      new WebSocket('ws://localhost/iwatch');
 	 
 	    webSocket.onerror = function(event) {
 	      onError(event)

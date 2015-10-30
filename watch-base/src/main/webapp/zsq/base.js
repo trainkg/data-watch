@@ -9,7 +9,7 @@ function getContextPath() {
 
 var rconfig = {
 	//所有模块的查找根路径。 还是根路径为标准
-	baseUrl : getContextPath()+'/zsq',
+	baseUrl : '/zsq',
 	waitSeconds: 7,
 	// RequireJS获取资源时附加在URL后面的额外的query参数。作为浏览器或服务器未正确配置时的“cache bust”手段很有用。使用cache bust配置的一个示例：
 	urlArgs: 'v.1.0.2',
