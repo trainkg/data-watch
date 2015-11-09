@@ -136,6 +136,7 @@ public class DataWatchServer{
 		}
 		
 		private void _dataHander(Machinfor minfo) {
+			log.info("处理数据,IP ",minfo.getMachip());
 			boolean needSave = Boolean.FALSE;
 			Date date = new Date();
 			String mac = minfo.getMachmac();

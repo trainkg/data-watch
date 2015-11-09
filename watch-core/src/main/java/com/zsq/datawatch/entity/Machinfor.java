@@ -97,6 +97,7 @@ public class Machinfor {
 
     private String msgtype;
 
+    @Deprecated
     private String contentlength;
 
     private Integer oper8value;

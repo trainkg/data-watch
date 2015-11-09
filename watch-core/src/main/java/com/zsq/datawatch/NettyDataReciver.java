@@ -3,8 +3,9 @@ package com.zsq.datawatch;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.util.Arrays;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
@@ -23,9 +24,12 @@ import com.zsq.datawatch.entity.Machinfor;
 public class NettyDataReciver implements InitializingBean, DisposableBean {
 
 	public static final int SERVER_PORT = 8913;
-
+	private Logger log = LoggerFactory.getLogger(getClass());
 	private ObjectMapper mapper;
 	private DatagramSocket server;
+	/**
+	 * # 交给了DataWatchServer 实例化
+	 */
 	private ReciverDataHander dataHander;
 	private DatagramPacket packet = null;
 
@@ -94,68 +98,142 @@ public class NettyDataReciver implements InitializingBean, DisposableBean {
 			return null;
 		}
 		
+		log.debug("接收数据开始，字节数数组长度 {}",packet2.getLength());
 		byte[] bytes = packet2.getData();
-		
+		String msgInfo = new String(bytes);
 		Machinfor info = new Machinfor();
+		String[] attrs = msgInfo.split("&");
+		
 		int x = 0;
 		//头信息
-		info.setMachnum(new String(Arrays.copyOfRange(bytes, x, x+=2)));
-		info.setMinorver(new String(Arrays.copyOfRange(bytes, x, x+=2)));
-		info.setMachmode(new String(Arrays.copyOfRange(bytes, x, x+=2)));
-		info.setMsgtype(new String(Arrays.copyOfRange(bytes, x, x+=2)));
-		info.setMachmac(new String(Arrays.copyOfRange(bytes, x, x+=20)));
-		info.setMachip(new String(Arrays.copyOfRange(bytes, x, x+=16)));
-		info.setMachport(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=2))));
-		info.setContentlength(new String(Arrays.copyOfRange(bytes, x, x+=2)));//48
+		info.setMachnum(attrs[x++]);
+		info.setMinorver(attrs[x++]);
+		info.setMachmode(attrs[x++]);
+		info.setMachmac(attrs[x++]);
+		info.setMachip(attrs[x++]);//44
+		log.info("接收到数据 ID 信息 {}",info.getMachip());
+		info.setMachport(Integer.valueOf(attrs[x++],16));//44-46
+		info.setMsgtype(attrs[x++]);
+		//info.setContentlength(attrs[x++]);//48
 		
 		//结构体
-		info.setCom1statue(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
-		info.setCom2statue(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
-		info.setAuststatue(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
-		info.setMachmotorstatue(new String(Arrays.copyOfRange(bytes, x, x+=4)));
-		info.setMachheartstatue(new String(Arrays.copyOfRange(bytes, x, x+=4))); 
+		info.setCom1statue(Integer.valueOf(attrs[x++],16));
+		info.setCom2statue(Integer.valueOf(attrs[x++],16));
+		info.setAuststatue(Integer.valueOf(attrs[x++],16));
+		info.setMachmotorstatue(Integer.valueOf(String.valueOf(attrs[x++]),16)+"");
+		info.setMachheartstatue(Integer.valueOf(String.valueOf(attrs[x++]),16)+""); 
 		
-		info.setTemper1statue(new String(Arrays.copyOfRange(bytes, x, x+=4)));
-		info.setTemper2statue(new String(Arrays.copyOfRange(bytes, x, x+=4)));
-		info.setTemper3statue(new String(Arrays.copyOfRange(bytes, x, x+=4)));
-		info.setTemper4statue(new String(Arrays.copyOfRange(bytes, x, x+=4)));
-		info.setTemper5statue(new String(Arrays.copyOfRange(bytes, x, x+=4)));
-		info.setTemper6statue(new String(Arrays.copyOfRange(bytes, x, x+=4)));
-		info.setTemper7statue(new String(Arrays.copyOfRange(bytes, x, x+=4)));
-		info.setTemper8statue(new String(Arrays.copyOfRange(bytes, x, x+=4)));
-		info.setTemper9statue(new String(Arrays.copyOfRange(bytes, x, x+=4))); //料温九段
+		info.setTemper1statue(Integer.valueOf(String.valueOf(attrs[x++]),16)+"");
+		info.setTemper2statue(Integer.valueOf(String.valueOf(attrs[x++]),16)+"");
+		info.setTemper3statue(Integer.valueOf(String.valueOf(attrs[x++]),16)+"");
+		info.setTemper4statue(Integer.valueOf(String.valueOf(attrs[x++]),16)+"");
+		info.setTemper5statue(Integer.valueOf(String.valueOf(attrs[x++]),16)+"");
+		info.setTemper6statue(Integer.valueOf(String.valueOf(attrs[x++]),16)+"");
+		info.setTemper7statue(Integer.valueOf(String.valueOf(attrs[x++]),16)+"");
+		info.setTemper8statue(Integer.valueOf(String.valueOf(attrs[x++]),16)+"");
+		info.setTemper9statue(Integer.valueOf(String.valueOf(attrs[x++]),16)+""); //料温九段
 		
-		info.setTemper1value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
-		info.setTemper2value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
-		info.setTemper3value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
-		info.setTemper4value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
-		info.setTemper5value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
-		info.setTemper6value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
-		info.setTemper7value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
-		info.setTemper8value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
-		info.setTemper9value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
-		info.setOiltempervalue(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4)))); //油温
+		info.setTemper1value(Integer.valueOf(attrs[x++],16));
+		info.setTemper2value(Integer.valueOf(attrs[x++],16));
+		info.setTemper3value(Integer.valueOf(attrs[x++],16));
+		info.setTemper4value(Integer.valueOf(attrs[x++],16));
+		info.setTemper5value(Integer.valueOf(attrs[x++],16));
+		info.setTemper6value(Integer.valueOf(attrs[x++],16));
+		info.setTemper7value(Integer.valueOf(attrs[x++],16));
+		info.setTemper8value(Integer.valueOf(attrs[x++],16));
+		info.setTemper9value(Integer.valueOf(attrs[x++],16));
+		info.setOiltempervalue(Integer.valueOf(attrs[x++],16)); //油温
 		
-		info.setOper1value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
-		info.setOper2value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
-		info.setOper3value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
-		info.setOper4value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
-		info.setOper5value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
-		info.setOper6value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
-		info.setOper7value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
-		info.setOper8value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
-		info.setOper9value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4)))); //料温九段状态
+		info.setOper1value(Integer.valueOf(attrs[x++],16));
+		info.setOper2value(Integer.valueOf(attrs[x++],16));
+		info.setOper3value(Integer.valueOf(attrs[x++],16));
+		info.setOper4value(Integer.valueOf(attrs[x++],16));
+		info.setOper5value(Integer.valueOf(attrs[x++],16));
+		info.setOper6value(Integer.valueOf(attrs[x++],16));
+		info.setOper7value(Integer.valueOf(attrs[x++],16));
+		info.setOper8value(Integer.valueOf(attrs[x++],16));
+		info.setOper9value(Integer.valueOf(attrs[x++],16)); //料温九段状态
 		
-		info.setRuler1value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
-		info.setRuler2value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
-		info.setRuler3value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
-		info.setRuler4value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
-		info.setRuler5value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
-		info.setRuler6value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
-		info.setRuler7value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4))));
-		info.setRuler8value(Integer.valueOf(new String(Arrays.copyOfRange(bytes, x, x+=4)))); //第八根电子尺 
+		info.setRuler1value(Integer.valueOf(attrs[x++],16));
+		info.setRuler2value(Integer.valueOf(attrs[x++],16));
+		info.setRuler3value(Integer.valueOf(attrs[x++],16));
+		info.setRuler4value(Integer.valueOf(attrs[x++],16));
+		info.setRuler5value(Integer.valueOf(attrs[x++],16));
+		info.setRuler6value(Integer.valueOf(attrs[x++],16));
+		info.setRuler7value(Integer.valueOf(attrs[x++],16));
+		info.setRuler8value(Integer.valueOf(attrs[x++].trim(),16)); //第八根电子尺 
 		
+		
+		/*int x = 0;
+		//头信息
+		info.setMachnum(String.valueOf(getValue(Arrays.copyOfRange(bytes, x, x+=2))));
+		info.setMinorver(String.valueOf(getValue(Arrays.copyOfRange(bytes, x, x+=2))));
+		info.setMachmode(String.valueOf(getValue(Arrays.copyOfRange(bytes, x, x+=2))));
+		info.setMsgtype(String.valueOf(getValue(Arrays.copyOfRange(bytes, x, x+=2))));
+		info.setMachmac(new String(Arrays.copyOfRange(bytes, x, x+=20)));
+		info.setMachip(new String(Arrays.copyOfRange(bytes, x, x+=16)));//44
+		log.info("接收到数据 ID 信息 {}",info.getMachip());
+		info.setMachport(getValue(Arrays.copyOfRange(bytes, x, x+=2)));//44-46
+		//info.setContentlength(String.valueOf(getValue(Arrays.copyOfRange(bytes, x, x+=2))));//48
+		
+		//结构体
+		info.setCom1statue(getValue(Arrays.copyOfRange(bytes, x, x+=4)));
+		info.setCom2statue(getValue(Arrays.copyOfRange(bytes, x, x+=4)));
+		info.setAuststatue(getValue(Arrays.copyOfRange(bytes, x, x+=4)));
+		info.setMachmotorstatue(String.valueOf(getValue(Arrays.copyOfRange(bytes, x, x+=4))));
+		info.setMachheartstatue(String.valueOf(getValue(Arrays.copyOfRange(bytes, x, x+=4)))); 
+		
+		info.setTemper1statue(String.valueOf(getValue(Arrays.copyOfRange(bytes, x, x+=4))));
+		info.setTemper2statue(String.valueOf(getValue(Arrays.copyOfRange(bytes, x, x+=4))));
+		info.setTemper3statue(String.valueOf(getValue(Arrays.copyOfRange(bytes, x, x+=4))));
+		info.setTemper4statue(String.valueOf(getValue(Arrays.copyOfRange(bytes, x, x+=4))));
+		info.setTemper5statue(String.valueOf(getValue(Arrays.copyOfRange(bytes, x, x+=4))));
+		info.setTemper6statue(String.valueOf(getValue(Arrays.copyOfRange(bytes, x, x+=4))));
+		info.setTemper7statue(String.valueOf(getValue(Arrays.copyOfRange(bytes, x, x+=4))));
+		info.setTemper8statue(String.valueOf(getValue(Arrays.copyOfRange(bytes, x, x+=4))));
+		info.setTemper9statue(String.valueOf(getValue(Arrays.copyOfRange(bytes, x, x+=4)))); //料温九段
+		
+		info.setTemper1value(getValue(Arrays.copyOfRange(bytes, x, x+=4)));
+		info.setTemper2value(getValue(Arrays.copyOfRange(bytes, x, x+=4)));
+		info.setTemper3value(getValue(Arrays.copyOfRange(bytes, x, x+=4)));
+		info.setTemper4value(getValue(Arrays.copyOfRange(bytes, x, x+=4)));
+		info.setTemper5value(getValue(Arrays.copyOfRange(bytes, x, x+=4)));
+		info.setTemper6value(getValue(Arrays.copyOfRange(bytes, x, x+=4)));
+		info.setTemper7value(getValue(Arrays.copyOfRange(bytes, x, x+=4)));
+		info.setTemper8value(getValue(Arrays.copyOfRange(bytes, x, x+=4)));
+		info.setTemper9value(getValue(Arrays.copyOfRange(bytes, x, x+=4)));
+		info.setOiltempervalue(getValue(Arrays.copyOfRange(bytes, x, x+=4))); //油温
+		
+		info.setOper1value(getValue(Arrays.copyOfRange(bytes, x, x+=4)));
+		info.setOper2value(getValue(Arrays.copyOfRange(bytes, x, x+=4)));
+		info.setOper3value(getValue(Arrays.copyOfRange(bytes, x, x+=4)));
+		info.setOper4value(getValue(Arrays.copyOfRange(bytes, x, x+=4)));
+		info.setOper5value(getValue(Arrays.copyOfRange(bytes, x, x+=4)));
+		info.setOper6value(getValue(Arrays.copyOfRange(bytes, x, x+=4)));
+		info.setOper7value(getValue(Arrays.copyOfRange(bytes, x, x+=4)));
+		info.setOper8value(getValue(Arrays.copyOfRange(bytes, x, x+=4)));
+		info.setOper9value(getValue(Arrays.copyOfRange(bytes, x, x+=4))); //料温九段状态
+		
+		info.setRuler1value(getValue(Arrays.copyOfRange(bytes, x, x+=4)));
+		info.setRuler2value(getValue(Arrays.copyOfRange(bytes, x, x+=4)));
+		info.setRuler3value(getValue(Arrays.copyOfRange(bytes, x, x+=4)));
+		info.setRuler4value(getValue(Arrays.copyOfRange(bytes, x, x+=4)));
+		info.setRuler5value(getValue(Arrays.copyOfRange(bytes, x, x+=4)));
+		info.setRuler6value(getValue(Arrays.copyOfRange(bytes, x, x+=4)));
+		info.setRuler7value(getValue(Arrays.copyOfRange(bytes, x, x+=4)));
+		info.setRuler8value(getValue(Arrays.copyOfRange(bytes, x, x+=4))); //第八根电子尺 
+*/		
 		return info;
+	}
+	
+	
+	public Integer getValue(byte[] value){
+		String s = "";
+		for (int i = value.length-1; i > -1; i--) {
+			System.out.println((char)value[i]);
+			s+=value[i];
+		}
+		return Integer.valueOf(s,16);
 	}
 
 	@Override
@@ -179,4 +257,5 @@ public class NettyDataReciver implements InitializingBean, DisposableBean {
 	public void setDataHander(ReciverDataHander dataHander) {
 		this.dataHander = dataHander;
 	}
+	
 }
