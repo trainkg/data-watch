@@ -26,15 +26,15 @@
         </javaTypeResolver>
  
         <!-- targetProject:自动生成代码的位置 -->
-        <javaModelGenerator targetPackage="com.zsq.datawatch.entity" targetProject="E:\datawatch\data-watch\watch-core\src\main\java">
+        <javaModelGenerator targetPackage="com.zsq.datawatch.entity" targetProject="F:\data-watch\watch-core\src\main\java">
             <property name="enableSubPackages" value="true" />
         </javaModelGenerator>
  
-        <sqlMapGenerator targetPackage="com.zsq.datawatch.dao" targetProject="E:\datawatch\data-watch\watch-core\src\main\java">
+        <sqlMapGenerator targetPackage="com.zsq.datawatch.dao" targetProject="F:\data-watch\watch-core\src\main\java">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
  
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.zsq.datawatch.dao" targetProject="E:\datawatch\data-watch\watch-core\src\main\java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.zsq.datawatch.dao" targetProject="F:\data-watch\watch-core\src\main\java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
         <!-- tableName:用于自动生成代码的数据库表；domainObjectName:对应于数据库表的javaBean类名 -->

@@ -19,11 +19,11 @@ public class Machinfor {
 
     private String machheartstatue;
 
-    private Integer com1statue = 1;
+    private Integer com1statue;
 
     private Integer com2statue;
 
-    private Integer auststatue = 1;
+    private Integer auststatue;
 
     private String temper1statue;
 
@@ -97,7 +97,6 @@ public class Machinfor {
 
     private String msgtype;
 
-    @Deprecated
     private String contentlength;
 
     private Integer oper8value;
@@ -106,12 +105,50 @@ public class Machinfor {
 
     private Date reciverdate;
 
-    /*----------------------------------------------------------------------*/
-    private Integer opermode 		= 1;
-    private Integer operstepmode  	= 2;
-    private Integer alarmtype		= 2;
-    private Integer dataindex 		= 1;
-    /*----------------------------------------------------------------------*/
+    private Integer werrdata1;
+
+    private Integer werrdata2;
+
+    private Integer werrdata3;
+
+    private Integer werrdata4;
+
+    private Integer werrdata5;
+
+    private Integer werrdata6;
+
+    private Integer werrdata7;
+
+    private Integer werrdata8;
+
+    private Integer werrdata9;
+
+    private Integer werrdata10;
+
+    private Integer werrdata11;
+
+    private Integer werrdata12;
+
+    private Integer werrdata13;
+
+    private Integer werrdata14;
+
+    private Integer werrdata15;
+
+    private Integer werrdata16;
+
+    private Integer wopermode;
+
+    private Integer woperstep1;
+
+    private Integer woperstep2;
+
+    private Integer wopersubstep1;
+
+    private Integer wopersubstep2;
+
+    private Integer woperstep3;
+
     public Integer getId() {
         return id;
     }
@@ -520,39 +557,179 @@ public class Machinfor {
         this.reciverdate = reciverdate;
     }
 
-	public Integer getOpermode() {
-		return opermode;
-	}
+    public Integer getWerrdata1() {
+        return werrdata1;
+    }
 
-	public void setOpermode(Integer opermode) {
-		this.opermode = opermode;
-	}
+    public void setWerrdata1(Integer werrdata1) {
+        this.werrdata1 = werrdata1;
+    }
 
-	public Integer getOperstepmode() {
-		return operstepmode;
-	}
+    public Integer getWerrdata2() {
+        return werrdata2;
+    }
 
-	public void setOperstepmode(Integer operstepmode) {
-		this.operstepmode = operstepmode;
-	}
+    public void setWerrdata2(Integer werrdata2) {
+        this.werrdata2 = werrdata2;
+    }
 
-	public Integer getAlarmtype() {
-		return alarmtype;
-	}
+    public Integer getWerrdata3() {
+        return werrdata3;
+    }
 
-	public void setAlarmtype(Integer alarmtype) {
-		this.alarmtype = alarmtype;
-	}
+    public void setWerrdata3(Integer werrdata3) {
+        this.werrdata3 = werrdata3;
+    }
 
-	public Integer getDataindex() {
-		return dataindex;
-	}
+    public Integer getWerrdata4() {
+        return werrdata4;
+    }
 
-	public void setDataindex(Integer dataindex) {
-		this.dataindex = dataindex;
-	}
-	
-	public static void main(String[] args) {
-		System.out.println(Integer.MIN_VALUE);
-	}
+    public void setWerrdata4(Integer werrdata4) {
+        this.werrdata4 = werrdata4;
+    }
+
+    public Integer getWerrdata5() {
+        return werrdata5;
+    }
+
+    public void setWerrdata5(Integer werrdata5) {
+        this.werrdata5 = werrdata5;
+    }
+
+    public Integer getWerrdata6() {
+        return werrdata6;
+    }
+
+    public void setWerrdata6(Integer werrdata6) {
+        this.werrdata6 = werrdata6;
+    }
+
+    public Integer getWerrdata7() {
+        return werrdata7;
+    }
+
+    public void setWerrdata7(Integer werrdata7) {
+        this.werrdata7 = werrdata7;
+    }
+
+    public Integer getWerrdata8() {
+        return werrdata8;
+    }
+
+    public void setWerrdata8(Integer werrdata8) {
+        this.werrdata8 = werrdata8;
+    }
+
+    public Integer getWerrdata9() {
+        return werrdata9;
+    }
+
+    public void setWerrdata9(Integer werrdata9) {
+        this.werrdata9 = werrdata9;
+    }
+
+    public Integer getWerrdata10() {
+        return werrdata10;
+    }
+
+    public void setWerrdata10(Integer werrdata10) {
+        this.werrdata10 = werrdata10;
+    }
+
+    public Integer getWerrdata11() {
+        return werrdata11;
+    }
+
+    public void setWerrdata11(Integer werrdata11) {
+        this.werrdata11 = werrdata11;
+    }
+
+    public Integer getWerrdata12() {
+        return werrdata12;
+    }
+
+    public void setWerrdata12(Integer werrdata12) {
+        this.werrdata12 = werrdata12;
+    }
+
+    public Integer getWerrdata13() {
+        return werrdata13;
+    }
+
+    public void setWerrdata13(Integer werrdata13) {
+        this.werrdata13 = werrdata13;
+    }
+
+    public Integer getWerrdata14() {
+        return werrdata14;
+    }
+
+    public void setWerrdata14(Integer werrdata14) {
+        this.werrdata14 = werrdata14;
+    }
+
+    public Integer getWerrdata15() {
+        return werrdata15;
+    }
+
+    public void setWerrdata15(Integer werrdata15) {
+        this.werrdata15 = werrdata15;
+    }
+
+    public Integer getWerrdata16() {
+        return werrdata16;
+    }
+
+    public void setWerrdata16(Integer werrdata16) {
+        this.werrdata16 = werrdata16;
+    }
+
+    public Integer getWopermode() {
+        return wopermode;
+    }
+
+    public void setWopermode(Integer wopermode) {
+        this.wopermode = wopermode;
+    }
+
+    public Integer getWoperstep1() {
+        return woperstep1;
+    }
+
+    public void setWoperstep1(Integer woperstep1) {
+        this.woperstep1 = woperstep1;
+    }
+
+    public Integer getWoperstep2() {
+        return woperstep2;
+    }
+
+    public void setWoperstep2(Integer woperstep2) {
+        this.woperstep2 = woperstep2;
+    }
+
+    public Integer getWopersubstep1() {
+        return wopersubstep1;
+    }
+
+    public void setWopersubstep1(Integer wopersubstep1) {
+        this.wopersubstep1 = wopersubstep1;
+    }
+
+    public Integer getWopersubstep2() {
+        return wopersubstep2;
+    }
+
+    public void setWopersubstep2(Integer wopersubstep2) {
+        this.wopersubstep2 = wopersubstep2;
+    }
+
+    public Integer getWoperstep3() {
+        return woperstep3;
+    }
+
+    public void setWoperstep3(Integer woperstep3) {
+        this.woperstep3 = woperstep3;
+    }
 }
