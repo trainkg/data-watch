@@ -98,71 +98,76 @@ public class NettyDataReciver implements InitializingBean, DisposableBean {
 			return null;
 		}
 		
-		log.debug("接收数据开始，字节数数组长度 {}",packet2.getLength());
-		byte[] bytes = packet2.getData();
-		String msgInfo = new String(bytes);
-		Machinfor info = new Machinfor();
-		String[] attrs = msgInfo.split("&");
-		
-		int x = 0;
-		//头信息
-		info.setMachnum(attrs[x++]);
-		info.setMinorver(attrs[x++]);
-		info.setMachmode(attrs[x++]);
-		info.setMachmac(attrs[x++]);
-		info.setMachip(attrs[x++]);//44
-		log.info("接收到数据 ID 信息 {}",info.getMachip());
-		info.setMachport(Integer.valueOf(attrs[x++],16));//44-46
-		info.setMsgtype(attrs[x++]);
-		//info.setContentlength(attrs[x++]);//48
-		
-		//结构体
-		info.setCom1statue(Integer.valueOf(attrs[x++],16));
-		info.setCom2statue(Integer.valueOf(attrs[x++],16));
-		info.setAuststatue(Integer.valueOf(attrs[x++],16));
-		info.setMachmotorstatue(Integer.valueOf(String.valueOf(attrs[x++]),16)+"");
-		info.setMachheartstatue(Integer.valueOf(String.valueOf(attrs[x++]),16)+""); 
-		
-		info.setTemper1statue(Integer.valueOf(String.valueOf(attrs[x++]),16)+"");
-		info.setTemper2statue(Integer.valueOf(String.valueOf(attrs[x++]),16)+"");
-		info.setTemper3statue(Integer.valueOf(String.valueOf(attrs[x++]),16)+"");
-		info.setTemper4statue(Integer.valueOf(String.valueOf(attrs[x++]),16)+"");
-		info.setTemper5statue(Integer.valueOf(String.valueOf(attrs[x++]),16)+"");
-		info.setTemper6statue(Integer.valueOf(String.valueOf(attrs[x++]),16)+"");
-		info.setTemper7statue(Integer.valueOf(String.valueOf(attrs[x++]),16)+"");
-		info.setTemper8statue(Integer.valueOf(String.valueOf(attrs[x++]),16)+"");
-		info.setTemper9statue(Integer.valueOf(String.valueOf(attrs[x++]),16)+""); //料温九段
-		
-		info.setTemper1value(Integer.valueOf(attrs[x++],16));
-		info.setTemper2value(Integer.valueOf(attrs[x++],16));
-		info.setTemper3value(Integer.valueOf(attrs[x++],16));
-		info.setTemper4value(Integer.valueOf(attrs[x++],16));
-		info.setTemper5value(Integer.valueOf(attrs[x++],16));
-		info.setTemper6value(Integer.valueOf(attrs[x++],16));
-		info.setTemper7value(Integer.valueOf(attrs[x++],16));
-		info.setTemper8value(Integer.valueOf(attrs[x++],16));
-		info.setTemper9value(Integer.valueOf(attrs[x++],16));
-		info.setOiltempervalue(Integer.valueOf(attrs[x++],16)); //油温
-		
-		info.setOper1value(Integer.valueOf(attrs[x++],16));
-		info.setOper2value(Integer.valueOf(attrs[x++],16));
-		info.setOper3value(Integer.valueOf(attrs[x++],16));
-		info.setOper4value(Integer.valueOf(attrs[x++],16));
-		info.setOper5value(Integer.valueOf(attrs[x++],16));
-		info.setOper6value(Integer.valueOf(attrs[x++],16));
-		info.setOper7value(Integer.valueOf(attrs[x++],16));
-		info.setOper8value(Integer.valueOf(attrs[x++],16));
-		info.setOper9value(Integer.valueOf(attrs[x++],16)); //料温九段状态
-		
-		info.setRuler1value(Integer.valueOf(attrs[x++],16));
-		info.setRuler2value(Integer.valueOf(attrs[x++],16));
-		info.setRuler3value(Integer.valueOf(attrs[x++],16));
-		info.setRuler4value(Integer.valueOf(attrs[x++],16));
-		info.setRuler5value(Integer.valueOf(attrs[x++],16));
-		info.setRuler6value(Integer.valueOf(attrs[x++],16));
-		info.setRuler7value(Integer.valueOf(attrs[x++],16));
-		info.setRuler8value(Integer.valueOf(attrs[x++].trim(),16)); //第八根电子尺 
-		
+		Machinfor info = null;
+		try {
+			log.debug("接收数据开始，字节数数组长度 {}",packet2.getLength());
+			byte[] bytes = packet2.getData();
+			String msgInfo = new String(bytes);
+			info = new Machinfor();
+			String[] attrs = msgInfo.split("&");
+			
+			int x = 0;
+			//头信息
+			info.setMachnum(attrs[x++]);
+			info.setMinorver(attrs[x++]);
+			info.setMachmode(attrs[x++]);
+			info.setMachmac(attrs[x++]);
+			info.setMachip(attrs[x++]);//44
+			log.info("接收到数据 ID 信息 {}",info.getMachip());
+			info.setMachport(Integer.valueOf(attrs[x++],16));//44-46
+			info.setMsgtype(attrs[x++]);
+			//info.setContentlength(attrs[x++]);//48
+			
+			//结构体
+			info.setCom1statue(Integer.valueOf(attrs[x++],16));
+			info.setCom2statue(Integer.valueOf(attrs[x++],16));
+			info.setAuststatue(Integer.valueOf(attrs[x++],16));
+			info.setMachmotorstatue(Integer.valueOf(String.valueOf(attrs[x++]),16)+"");
+			info.setMachheartstatue(Integer.valueOf(String.valueOf(attrs[x++]),16)+""); 
+			
+			info.setTemper1statue(Integer.valueOf(String.valueOf(attrs[x++]),16)+"");
+			info.setTemper2statue(Integer.valueOf(String.valueOf(attrs[x++]),16)+"");
+			info.setTemper3statue(Integer.valueOf(String.valueOf(attrs[x++]),16)+"");
+			info.setTemper4statue(Integer.valueOf(String.valueOf(attrs[x++]),16)+"");
+			info.setTemper5statue(Integer.valueOf(String.valueOf(attrs[x++]),16)+"");
+			info.setTemper6statue(Integer.valueOf(String.valueOf(attrs[x++]),16)+"");
+			info.setTemper7statue(Integer.valueOf(String.valueOf(attrs[x++]),16)+"");
+			info.setTemper8statue(Integer.valueOf(String.valueOf(attrs[x++]),16)+"");
+			info.setTemper9statue(Integer.valueOf(String.valueOf(attrs[x++]),16)+""); //料温九段
+			
+			info.setTemper1value(Integer.valueOf(attrs[x++],16));
+			info.setTemper2value(Integer.valueOf(attrs[x++],16));
+			info.setTemper3value(Integer.valueOf(attrs[x++],16));
+			info.setTemper4value(Integer.valueOf(attrs[x++],16));
+			info.setTemper5value(Integer.valueOf(attrs[x++],16));
+			info.setTemper6value(Integer.valueOf(attrs[x++],16));
+			info.setTemper7value(Integer.valueOf(attrs[x++],16));
+			info.setTemper8value(Integer.valueOf(attrs[x++],16));
+			info.setTemper9value(Integer.valueOf(attrs[x++],16));
+			info.setOiltempervalue(Integer.valueOf(attrs[x++],16)); //油温
+			
+			info.setOper1value(Integer.valueOf(attrs[x++],16));
+			info.setOper2value(Integer.valueOf(attrs[x++],16));
+			info.setOper3value(Integer.valueOf(attrs[x++],16));
+			info.setOper4value(Integer.valueOf(attrs[x++],16));
+			info.setOper5value(Integer.valueOf(attrs[x++],16));
+			info.setOper6value(Integer.valueOf(attrs[x++],16));
+			info.setOper7value(Integer.valueOf(attrs[x++],16));
+			info.setOper8value(Integer.valueOf(attrs[x++],16));
+			info.setOper9value(Integer.valueOf(attrs[x++],16)); //料温九段状态
+			
+			info.setRuler1value(Integer.valueOf(attrs[x++],16));
+			info.setRuler2value(Integer.valueOf(attrs[x++],16));
+			info.setRuler3value(Integer.valueOf(attrs[x++],16));
+			info.setRuler4value(Integer.valueOf(attrs[x++],16));
+			info.setRuler5value(Integer.valueOf(attrs[x++],16));
+			info.setRuler6value(Integer.valueOf(attrs[x++],16));
+			info.setRuler7value(Integer.valueOf(attrs[x++],16));
+			info.setRuler8value(Integer.valueOf(attrs[x].substring(0,attrs[x].indexOf('$')),16)); //第八根电子尺 
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.warn("接受数据处理异常",e);
+		}
 		
 		/*int x = 0;
 		//头信息
