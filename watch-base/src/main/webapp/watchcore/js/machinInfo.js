@@ -2,17 +2,23 @@
 define(['backbone','underscore',
         'text!watchcore/js/tpl/machinfoA.html',
         'text!watchcore/js/tpl/machinfoDetail.html',
+        'text!watchcore/js/tpl/machinfoMin.html',
         'plugins/process/jquery.process'],
+        
     /**
-     * viewtpl:总页面模板
-     * detailtpl：详细信息模板
+     * viewtpl:		总页面模板
+     * detailtpl：	详细信息模板
+     * deliveryTpl:	机器节点的详细信息页面 
      */
-    function(Backbone,_,viewtpl,detailtpl){
+    function(Backbone,_,viewtpl,detailtpl,deliveryTpl){
 	
 	
 	var default_detail_context = {
 		//页面信息
-		data:null
+		data:null,
+		//是否打开了详细信息页面
+		delivery:false,
+		deliveryView:null
 	};
 	/**
 	 * 详细页面信息View
@@ -20,28 +26,75 @@ define(['backbone','underscore',
 	var infoDetail = Backbone.View.extend({
 		context:{},
 		_template:_.template(detailtpl),
-		initialize:function(info){
-			this.context = _.extend({},default_detail_context,{data:info});
+		initialize:function(context){
+			this.context = _.extend({},default_detail_context,context);
 			
 			this.beforeRender();
 			this.render();
 			this.afterRender();
 		},
+		events:{
+			'click':'openDelivery'
+		},
 		beforeRender:function(){},
+		openDelivery:function(){
+			var view = this;
+			var $div = $('<div></div');
+			$('body').append($div);
+			var config = {el:$div,data:view.context.data};
+			this.context.deliveryView = new machineDelivery(config);
+			view.context.delivery = true;
+			$div.bind('m-delivery-close',function(){
+				view.context.delivery = false;
+				view.context.deliveryView = null;
+			})
+		},
 		render:function(){
-			return this._template(this.context);
+			this.$el.html(this._template(this.context));
 		},
 		reRender:function(info){
 			if(info){
 				this.context.data = info;
 				var content = this.render();
 				this.$el.html($(content).html());
+				if(this.context.delivery){
+					this.context.deliveryView.reRender(info);
+				}
 			}
 		},
 		afterRender:function(){},
 		//获取当前机器状态信息
-		getStatus:function(){},
+		getStatus:function(){console.log('status')},
 		getData:function(){return this.context.data}
+	});
+	
+	/**
+	 * 机器节点的详细信息
+	 */
+	var machineDelivery = Backbone.View.extend({
+		default_config:{vid:'',title:'',data:null},
+		context:null,
+		_template:_.template(deliveryTpl),
+		events:{
+			'click .close':'close'
+		},
+		initialize:function(context){
+			this.context = _.extend({},this.default_config,context);
+			this.render();
+		},
+		render:function(){
+			this.$el.html(this._template(this.context));
+			this.$el.find('.modal').show();
+		},
+		close:function(){
+			this.$el.trigger('m-delivery-close');
+			this.$el.remove();
+		},
+		reRender:function(info){
+			console.log("详细重新渲染");
+			this.context.data = info;
+			this.render();
+		}
 	});
 	
 	
@@ -79,11 +132,14 @@ define(['backbone','underscore',
 			if(detail){
 				detail.reRender(machinfo);
 			}else{
-				detail = new infoDetail(machinfo);
+				var $div = $('<div class="m-machinfor-detail col-md-3" ></div>');
+				this.$el.append($div);
+				var context = {el:$div,data:machinfo};
+				detail = new infoDetail(context);
 				this.context.item[machinfo.machmac] = detail;
-				var $el = $(detail.render());
+				/*var $el = $(detail.render());
 				this.$el.append($el);
-				detail.setElement($el);
+				detail.setElement($el);*/
 			}
 			if(updateStatue){
 				this.renderMachineState();
@@ -101,7 +157,13 @@ define(['backbone','underscore',
 		 * R:Array
 		 */
 		_getMachInfos:function(){
-			
+			var view = this;
+			$.when($.getJSON('/watch/machine/list')).then(function(data){
+				_.each(data,function(item){
+					view.addMachinfo(item);
+				})
+				view.renderMachineState();
+			})
 		},
 		/*
 		 * 根据机器ID删除机器信息
@@ -116,13 +178,7 @@ define(['backbone','underscore',
 		 * 初始加载系统所有机器信息
 		 */
 		_loadInfo:function(){
-			var ms = this._getMachInfos();
-			if(ms){
-				for(var machine in ms){
-					this.addMachinfo(machine);
-				}
-				this.renderMachineState();
-			}
+			this._getMachInfos();
 		},
 		/*
 		 * 刷新指定的机器信息 
@@ -174,6 +230,7 @@ define(['backbone','underscore',
 			}
 		}
 	});
+	
 	
 	
 	return view;

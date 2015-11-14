@@ -19,7 +19,7 @@ public class WatchDataService implements IWatchDataService {
 	
 	@Override
 	public List<Machinfor> getCurrentMachInfo() {
-		return null;
+		return daoMinfo.getNewNodesAll();
 	}
 
 	@Override

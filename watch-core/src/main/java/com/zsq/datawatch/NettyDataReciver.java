@@ -163,7 +163,31 @@ public class NettyDataReciver implements InitializingBean, DisposableBean {
 			info.setRuler5value(Integer.valueOf(attrs[x++],16));
 			info.setRuler6value(Integer.valueOf(attrs[x++],16));
 			info.setRuler7value(Integer.valueOf(attrs[x++],16));
-			info.setRuler8value(Integer.valueOf(attrs[x].substring(0,attrs[x].indexOf('$')),16)); //第八根电子尺 
+			info.setRuler8value(Integer.valueOf(attrs[x++],16)); //第八根电子尺 
+			
+			info.setWerrdata1(Integer.valueOf(attrs[x++],16));
+			info.setWerrdata2(Integer.valueOf(attrs[x++],16));
+			info.setWerrdata3(Integer.valueOf(attrs[x++],16));
+			info.setWerrdata4(Integer.valueOf(attrs[x++],16));
+			info.setWerrdata5(Integer.valueOf(attrs[x++],16));
+			info.setWerrdata6(Integer.valueOf(attrs[x++],16));
+			info.setWerrdata7(Integer.valueOf(attrs[x++],16));
+			info.setWerrdata8(Integer.valueOf(attrs[x++],16));
+			info.setWerrdata9(Integer.valueOf(attrs[x++],16));
+			info.setWerrdata10(Integer.valueOf(attrs[x++],16));
+			info.setWerrdata11(Integer.valueOf(attrs[x++],16));
+			info.setWerrdata12(Integer.valueOf(attrs[x++],16));
+			info.setWerrdata13(Integer.valueOf(attrs[x++],16));
+			info.setWerrdata14(Integer.valueOf(attrs[x++],16));
+			info.setWerrdata15(Integer.valueOf(attrs[x++],16));
+			info.setWerrdata16(Integer.valueOf(attrs[x++],16));
+			
+			info.setWopermode(Integer.valueOf(attrs[x++],16));
+			info.setWoperstep1(Integer.valueOf(attrs[x++],16));
+			info.setWoperstep2(Integer.valueOf(attrs[x++],16));
+			info.setWoperstep3(Integer.valueOf(attrs[x++],16));
+			info.setWopersubstep1(Integer.valueOf(attrs[x++],16));
+			info.setWopersubstep2(Integer.valueOf(attrs[x].substring(0,attrs[x].indexOf('$')),16));
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.warn("接受数据处理异常",e);

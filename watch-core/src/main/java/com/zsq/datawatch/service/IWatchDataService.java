@@ -12,7 +12,7 @@ import com.zsq.datawatch.entity.Machinfor;
 public interface IWatchDataService {
 
 	/**
-	 * 获取当前系统中当前所有机器的状态信息
+	 * 获取当前系统中当前所有机器的最新状态信息
 	 * @return
 	 */
 	public List<Machinfor> getCurrentMachInfo();

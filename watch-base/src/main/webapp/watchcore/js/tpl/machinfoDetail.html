@@ -1,187 +1,202 @@
-<div class="m-machinfor-detail col-md-3" >
-	<table class="table table-bordered">
-		<tr>
-			<!-- <td title="MAC地址"><%=data.machmac%></td> -->
-			<td title="机器IP" width="50%"><%=data.machip%></td>
-			<td title="机器类型" width="50%">
-			<%if(data.machmode == 1){%>PLC<%}%>
-			<%if(data.machmode == 2){%>TM<%}%>
-			</td>
-		</tr>
-		<tr>
-			<!-- <td title="机器端口"><%=data.machport%></td>
-			<td title="马达状态"><%=data.machmotorstatue%></td> -->
-			<td title="机器状态">
-				<%if(data.opermode == 1){%>自动<%}%>
-				<%if(data.opermode == 2){%>半自动<%}%>
-				<%if(data.opermode == 4){%>电眼自动<%}%>
-				<%if(data.opermode == 8){%>时间自动<%}%>
-				<%if(data.opermode == 16){%>粗调模<%}%>
-				<%if(data.opermode == 32){%>微动调模<%}%>
-				<%if(data.opermode == 64){%>位置设定<%}%>
-				<%if(data.opermode == 128){%>自动清料<%}%>
-				<%if(data.opermode == 2048){%>自动调模<%}%>
-				<%if(data.opermode == 0){%>手动<%}%>
-			</td>
-			<td title="机器动作状态">
-				<%if(data.operstepmode == 2){%>压模<%}%>
-				<%if(data.operstepmode == 4){%>开模<%}%>
-				<%if(data.operstepmode == 8){%>射出<%}%>
-				<%if(data.operstepmode == 16){%>射退<%}%>
-				<%if(data.operstepmode == 32){%>储料<%}%>
-				<%if(data.operstepmode == 64){%>座台进<%}%>
-				<%if(data.operstepmode == 128){%>座台退<%}%>
-				<%if(data.operstepmode == 256){%>脱模进<%}%>
-				<%if(data.operstepmode == 512){%>脱模退<%}%>
-				<%if(data.operstepmode == 1024){%>中子进<%}%>
-				<%if(data.operstepmode == 2048){%>中子退<%}%>
-				<%if(data.operstepmode == 4096){%>调模进<%}%>
-				<%if(data.operstepmode == 8192){%>调模退<%}%>
-				<%if(data.operstepmode == 16384){%>保压<%}%>
-				<%if(data.operstepmode == 0){%>关模<%}%>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2" title="异常报警">
-			<%if(data.dataindex == 0){%>
-				<%if(data.alarmtype == 1){%>温度偏差<%}%>
-				<%if(data.alarmtype == 2){%>安全门未关<%}%>
-				<%if(data.alarmtype == 4){%>请开安全门<%}%>
-				<%if(data.alarmtype == 8){%>放开手动/急停键<%}%>
-				<%if(data.alarmtype == 16){%>油温偏差<%}%>
-				<%if(data.alarmtype == 32){%>全程未定时完成<%}%>
-				<%if(data.alarmtype == 64){%>加热器电流错误<%}%>
-				<%if(data.alarmtype == 128){%>脱模未到定位<%}%>
-				<%if(data.alarmtype == 216){%>射出监控失败<%}%>
-				<%if(data.alarmtype == 512){%>射出防护罩未关<%}%>
-				<%if(data.alarmtype == 1024){%>机械手失败<%}%>
-				<%if(data.alarmtype == 2048){%>开模数已到<%}%>
-				<%if(data.alarmtype == 4096){%>开模未到定位<%}%>
-				<%if(data.alarmtype == 8192){%>脱模失败<%}%>
-				<%if(data.alarmtype == 16384){%>储料未定时完成<%}%>
-				<%if(data.alarmtype == 32768){%>关模未到定位<%}%>
-			<%}else if(data.dataindex == 1){%>
-				<%if(data.alarmtype == 1){%>位置设定不良<%}%>
-				<%if(data.alarmtype == 2){%>完成自动调模<%}%>
-				<%if(data.alarmtype == 4){%>润滑油位偏差<%}%>
-				<%if(data.alarmtype == 8){%>射出启位置偏差<%}%>
-				<%if(data.alarmtype == 16){%>储料转数偏差<%}%>
-				<%if(data.alarmtype == 32){%>射出时间偏差<%}%>
-				<%if(data.alarmtype == 64){%>开模一慢未定位<%}%>
-				<%if(data.alarmtype == 128){%>关模保护失败<%}%>
-				<%if(data.alarmtype == 216){%>射退终未到定位<%}%>
-				<%if(data.alarmtype == 512){%>储料终未到定位<%}%>
-				<%if(data.alarmtype == 1024){%>开模装数己到<%}%>
-				<%if(data.alarmtype == 2048){%>中子未到定位<%}%>
-				<%if(data.alarmtype == 4096){%>机械安全异常<%}%>
-				<%if(data.alarmtype == 8192){%>润滑检出失败<%}%>
-				<%if(data.alarmtype == 16384){%>油量检出失败<%}%>
-				<%if(data.alarmtype == 32768){%>滤网检出失败<%}%>
+<table class="table table-bordered">
+	<tr>
+		<!-- <td title="MAC地址"><%=data.machmac%></td> -->
+		<td title="机器IP" width="50%"><%=data.machip%></td>
+		<td title="机器类型" width="50%">
+		<%if(data.machmode == 1){%>PLC<%}%>
+		<%if(data.machmode == 2){%>TM<%}%>
+		</td>
+	</tr>
+	<tr>
+		<!-- <td title="机器端口"><%=data.machport%></td> -->
+		<td title="机器马达状态"><%=data.machmotorstatue%></td>
+		<td title="电热状态"><%=data.machheartstatue%></td>
+		<!-- <td title="机器动作状态">
+			<%if(data.operstepmode == 2){%>压模<%}%>
+			<%if(data.operstepmode == 4){%>开模<%}%>
+			<%if(data.operstepmode == 8){%>射出<%}%>
+			<%if(data.operstepmode == 16){%>射退<%}%>
+			<%if(data.operstepmode == 32){%>储料<%}%>
+			<%if(data.operstepmode == 64){%>座台进<%}%>
+			<%if(data.operstepmode == 128){%>座台退<%}%>
+			<%if(data.operstepmode == 256){%>脱模进<%}%>
+			<%if(data.operstepmode == 512){%>脱模退<%}%>
+			<%if(data.operstepmode == 1024){%>中子进<%}%>
+			<%if(data.operstepmode == 2048){%>中子退<%}%>
+			<%if(data.operstepmode == 4096){%>调模进<%}%>
+			<%if(data.operstepmode == 8192){%>调模退<%}%>
+			<%if(data.operstepmode == 16384){%>保压<%}%>
+			<%if(data.operstepmode == 0){%>关模<%}%>
+		</td> -->
+	</tr>
+	<tr>
+		<td title="机器操作模式">
+			<%if(data.opermode == 1){%>自动<%}%>
+			<%if(data.opermode == 2){%>半自动<%}%>
+			<%if(data.opermode == 4){%>电眼自动<%}%>
+			<%if(data.opermode == 8){%>时间自动<%}%>
+			<%if(data.opermode == 16){%>粗调模<%}%>
+			<%if(data.opermode == 32){%>微动调模<%}%>
+			<%if(data.opermode == 64){%>位置设定<%}%>
+			<%if(data.opermode == 128){%>自动清料<%}%>
+			<%if(data.opermode == 2048){%>自动调模<%}%>
+			<%if(data.opermode == 0){%>手动<%}%>
+		</td>
+		<td title="机器动作状态">
+			<%if(data.operstepmode == 2){%>压模<%}%>
+			<%if(data.operstepmode == 4){%>开模<%}%>
+			<%if(data.operstepmode == 8){%>射出<%}%>
+			<%if(data.operstepmode == 16){%>射退<%}%>
+			<%if(data.operstepmode == 32){%>储料<%}%>
+			<%if(data.operstepmode == 64){%>座台进<%}%>
+			<%if(data.operstepmode == 128){%>座台退<%}%>
+			<%if(data.operstepmode == 256){%>脱模进<%}%>
+			<%if(data.operstepmode == 512){%>脱模退<%}%>
+			<%if(data.operstepmode == 1024){%>中子进<%}%>
+			<%if(data.operstepmode == 2048){%>中子退<%}%>
+			<%if(data.operstepmode == 4096){%>调模进<%}%>
+			<%if(data.operstepmode == 8192){%>调模退<%}%>
+			<%if(data.operstepmode == 16384){%>保压<%}%>
+			<%if(data.operstepmode == 0){%>关模<%}%>
+		</td>
+		<!-- <td colspan="2" title="异常报警">
+		<%if(data.dataindex == 0){%>
+			<%if(data.alarmtype == 1){%>温度偏差<%}%>
+			<%if(data.alarmtype == 2){%>安全门未关<%}%>
+			<%if(data.alarmtype == 4){%>请开安全门<%}%>
+			<%if(data.alarmtype == 8){%>放开手动/急停键<%}%>
+			<%if(data.alarmtype == 16){%>油温偏差<%}%>
+			<%if(data.alarmtype == 32){%>全程未定时完成<%}%>
+			<%if(data.alarmtype == 64){%>加热器电流错误<%}%>
+			<%if(data.alarmtype == 128){%>脱模未到定位<%}%>
+			<%if(data.alarmtype == 216){%>射出监控失败<%}%>
+			<%if(data.alarmtype == 512){%>射出防护罩未关<%}%>
+			<%if(data.alarmtype == 1024){%>机械手失败<%}%>
+			<%if(data.alarmtype == 2048){%>开模数已到<%}%>
+			<%if(data.alarmtype == 4096){%>开模未到定位<%}%>
+			<%if(data.alarmtype == 8192){%>脱模失败<%}%>
+			<%if(data.alarmtype == 16384){%>储料未定时完成<%}%>
+			<%if(data.alarmtype == 32768){%>关模未到定位<%}%>
+		<%}else if(data.dataindex == 1){%>
+			<%if(data.alarmtype == 1){%>位置设定不良<%}%>
+			<%if(data.alarmtype == 2){%>完成自动调模<%}%>
+			<%if(data.alarmtype == 4){%>润滑油位偏差<%}%>
+			<%if(data.alarmtype == 8){%>射出启位置偏差<%}%>
+			<%if(data.alarmtype == 16){%>储料转数偏差<%}%>
+			<%if(data.alarmtype == 32){%>射出时间偏差<%}%>
+			<%if(data.alarmtype == 64){%>开模一慢未定位<%}%>
+			<%if(data.alarmtype == 128){%>关模保护失败<%}%>
+			<%if(data.alarmtype == 216){%>射退终未到定位<%}%>
+			<%if(data.alarmtype == 512){%>储料终未到定位<%}%>
+			<%if(data.alarmtype == 1024){%>开模装数己到<%}%>
+			<%if(data.alarmtype == 2048){%>中子未到定位<%}%>
+			<%if(data.alarmtype == 4096){%>机械安全异常<%}%>
+			<%if(data.alarmtype == 8192){%>润滑检出失败<%}%>
+			<%if(data.alarmtype == 16384){%>油量检出失败<%}%>
+			<%if(data.alarmtype == 32768){%>滤网检出失败<%}%>
+		<%}%>
+		</td> -->
+	</tr>
+	<!-- <tr>
+		<td title="COM1通讯状态">
+			<%if(data.com1statue == 0){%>
+			<img src="/watch/watchcore/images/com1-unc.bmp">
 			<%}%>
-			</td>
-		</tr>
-		<tr>
-			<!-- <td title="电热状态"><%=data.machheartstatue%></td> -->
-			<td title="COM1通讯状态">
-				<%if(data.com1statue == 0){%>
-				<img src="/watch/watchcore/images/com1-unc.bmp">
-				<%}%>
-				<%if(data.com1statue == 1){%>
-				<img src="/watchcore/images/com1-c.bmp">
-				<%}%>
-			</td>
-			<td title="伺服器连接状态">
-				<%if(data.auststatue == 0){%>
-				<img src="/watchcore/images/a-uc.bmp">
-				<%}%>
-				<%if(data.auststatue == 1){%>
-				<img src="/watchcore/images/a-c.bmp">
-				<%}%>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2" style="padding: 0">
-				<div style="padding: 10px"
-				<%if(data.msgtype == 1){%>class='green'<%}%>
-				<%if(data.msgtype == 0){%>class='gray'<%}%>
-				<%if(data.msgtype == 2){%>class='red'<%}%>
-				>
-					<img width="130" src="/watchcore/images/machine.png">
-				</div>
-			</td>
-		</tr>
-		<!-- <tr>
-			<td title="COM2通讯状态"><%=data.com2statue%></td>
-			<td title="AUST伺服器通讯状态"><%=data.auststatue%></td>
-		</tr>
-		<tr>
-			<td title="料温一段状态"><%=data.temper1statue%></td>
-			<td title="料温二段状态"><%=data.temper2statue%></td>
-		</tr>
-		<tr>
-			<td title="料温三段状态"><%=data.temper3statue%></td>
-			
-			<td title="料温四段状态"><%=data.temper4statue%></td>
-		</tr>
-		<tr>
-			<td title="料温五段状态"><%=data.temper5statue%></td>
-			<td title="料温六段状态"><%=data.temper6statue%></td>
-		</tr>
-		<tr>
-			<td title="料温七段状态"><%=data.temper7statue%></td>
-			<td title="料温八段状态"><%=data.temper8statue%></td>
-		</tr>
-		<tr>
-			<td title="料温九段状态"><%=data.temper9statue%></td>
-			<td title="料温一段"><%=data.temper1value%></td>
-		</tr>
-		<tr>
-			<td title="料温二段"><%=data.temper2value%></td>
-			<td title="料温三段"><%=data.temper3value%></td>
-		</tr>
-		<tr>
-			<td title="料温四段"><%=data.temper4value%></td>
-			<td title="料温五段"><%=data.temper5value%></td>
-		</tr>
-		<tr>
-			<td title="料温六段"><%=data.temper6value%></td>
-			<td title="料温七段"><%=data.temper7value%></td>
-		</tr>
-		<tr>
-			<td title="料温八段"><%=data.temper8value%></td>
-			<td title="油温"><%=data.oiltempervalue%></td>
-		</tr>
-		<tr>
-			<td title="第一根电子尺值（射出电子尺）"><%=data.ruler1value%></td>
-			<td title="第二根电子尺值（注模电子尺）"><%=data.ruler2value%></td>
-		</tr>
-		<tr>
-			<td title="第三根电子尺值（吹模电子尺）"><%=data.ruler3value%></td>
-			<td title="第四根电子尺值（脱模电子尺）"><%=data.ruler4value%></td>
-		</tr>
-		<tr>
-			<td title="第五根电子尺值"><%=data.ruler5value%></td>
-			<td title="第六根电子尺值"><%=data.ruler6value%></td>
-		</tr>
-		<tr>
-			<td title="第七根电子尺值"><%=data.ruler7value%></td>
-			<td title="第八根电子尺值"><%=data.ruler8value%></td>
-		</tr>
-		<tr>
-			<td title="机器状态1"><%=data.oper1value%></td>
-			<td title="机器状态2"><%=data.oper2value%></td>
-		</tr>
-		<tr>
-			<td title="机器状态3"><%=data.oper3value%></td>
-			<td title="机器状态4"><%=data.oper4value%></td>
-		</tr>
-		<tr>
-			<td title="机器状态5"><%=data.oper5value%></td>
-			<td title="机器状态6"><%=data.oper6value%></td>
-		</tr>
-		<tr>
-			<td title="机器状态7"><%=data.oper7value%></td>
-			<td title="机器状态8"><%=data.oper8value%></td>
-		</tr> -->
-	</table>
-</div>
+			<%if(data.com1statue == 1){%>
+			<img src="/watchcore/images/com1-c.bmp">
+			<%}%>
+		</td>
+		<td title="伺服器连接状态">
+			<%if(data.auststatue == 0){%>
+			<img src="/watchcore/images/a-uc.bmp">
+			<%}%>
+			<%if(data.auststatue == 1){%>
+			<img src="/watchcore/images/a-c.bmp">
+			<%}%>
+		</td>
+	</tr> -->
+	<tr>
+		<td colspan="2" style="padding: 0">
+			<div style="padding: 10px"
+			<%if(data.msgtype == 1){%>class='green'<%}%>
+			<%if(data.msgtype == 0){%>class='gray'<%}%>
+			<%if(data.msgtype == 2){%>class='red'<%}%>
+			>
+				<img width="130" src="/watchcore/images/machine.png">
+			</div>
+		</td>
+	</tr>
+	<!-- <tr>
+		<td title="COM2通讯状态"><%=data.com2statue%></td>
+		<td title="AUST伺服器通讯状态"><%=data.auststatue%></td>
+	</tr>
+	<tr>
+		<td title="料温一段状态"><%=data.temper1statue%></td>
+		<td title="料温二段状态"><%=data.temper2statue%></td>
+	</tr>
+	<tr>
+		<td title="料温三段状态"><%=data.temper3statue%></td>
+		
+		<td title="料温四段状态"><%=data.temper4statue%></td>
+	</tr>
+	<tr>
+		<td title="料温五段状态"><%=data.temper5statue%></td>
+		<td title="料温六段状态"><%=data.temper6statue%></td>
+	</tr>
+	<tr>
+		<td title="料温七段状态"><%=data.temper7statue%></td>
+		<td title="料温八段状态"><%=data.temper8statue%></td>
+	</tr>
+	<tr>
+		<td title="料温九段状态"><%=data.temper9statue%></td>
+		<td title="料温一段"><%=data.temper1value%></td>
+	</tr>
+	<tr>
+		<td title="料温二段"><%=data.temper2value%></td>
+		<td title="料温三段"><%=data.temper3value%></td>
+	</tr>
+	<tr>
+		<td title="料温四段"><%=data.temper4value%></td>
+		<td title="料温五段"><%=data.temper5value%></td>
+	</tr>
+	<tr>
+		<td title="料温六段"><%=data.temper6value%></td>
+		<td title="料温七段"><%=data.temper7value%></td>
+	</tr>
+	<tr>
+		<td title="料温八段"><%=data.temper8value%></td>
+		<td title="油温"><%=data.oiltempervalue%></td>
+	</tr>
+	<tr>
+		<td title="第一根电子尺值（射出电子尺）"><%=data.ruler1value%></td>
+		<td title="第二根电子尺值（注模电子尺）"><%=data.ruler2value%></td>
+	</tr>
+	<tr>
+		<td title="第三根电子尺值（吹模电子尺）"><%=data.ruler3value%></td>
+		<td title="第四根电子尺值（脱模电子尺）"><%=data.ruler4value%></td>
+	</tr>
+	<tr>
+		<td title="第五根电子尺值"><%=data.ruler5value%></td>
+		<td title="第六根电子尺值"><%=data.ruler6value%></td>
+	</tr>
+	<tr>
+		<td title="第七根电子尺值"><%=data.ruler7value%></td>
+		<td title="第八根电子尺值"><%=data.ruler8value%></td>
+	</tr>
+	<tr>
+		<td title="机器状态1"><%=data.oper1value%></td>
+		<td title="机器状态2"><%=data.oper2value%></td>
+	</tr>
+	<tr>
+		<td title="机器状态3"><%=data.oper3value%></td>
+		<td title="机器状态4"><%=data.oper4value%></td>
+	</tr>
+	<tr>
+		<td title="机器状态5"><%=data.oper5value%></td>
+		<td title="机器状态6"><%=data.oper6value%></td>
+	</tr>
+	<tr>
+		<td title="机器状态7"><%=data.oper7value%></td>
+		<td title="机器状态8"><%=data.oper8value%></td>
+	</tr> -->
+</table>

@@ -1,5 +1,7 @@
 package com.zsq.datawatch.dao;
 
+import java.util.List;
+
 import com.zsq.datawatch.entity.Machinfor;
 
 public interface MachinforMapper {
@@ -14,4 +16,6 @@ public interface MachinforMapper {
     int updateByPrimaryKeySelective(Machinfor record);
 
     int updateByPrimaryKey(Machinfor record);
+
+	List<Machinfor> getNewNodesAll();
 }

@@ -92,7 +92,7 @@ public class DataWatchServer{
 		 */
 		private Map<String,Long> map = new HashMap<String,Long>();
 		
-		public static final int SPLIT_TIME = 5 * 60 * 1000;
+		public static final int SPLIT_TIME = 1 * 60 * 1000;
 		
 		private ObjectMapper mapper;
 		
@@ -147,6 +147,7 @@ public class DataWatchServer{
 			}
 			
 			if(needSave){
+				minfo.setReciverdate(new Date());
 				seWatch.saveInfo(minfo);
 			}
 			
