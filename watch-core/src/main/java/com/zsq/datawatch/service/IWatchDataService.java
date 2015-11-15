@@ -2,7 +2,10 @@ package com.zsq.datawatch.service;
 
 import java.util.List;
 
+import com.zsq.datawatch.entity.Alarmtype;
 import com.zsq.datawatch.entity.Machinfor;
+import com.zsq.datawatch.entity.Opermode;
+import com.zsq.datawatch.entity.Operstepmode;
 
 /**
  * 数据监测模块
@@ -22,4 +25,13 @@ public interface IWatchDataService {
 	 * @param info
 	 */
 	public void saveInfo(Machinfor info);
+
+	/**
+	 * @return
+	 */
+	public List<Alarmtype> getAllAlarmtypes();
+
+	public List<Opermode> getAllOpermodes();
+
+	public List<Operstepmode> getAllOperstepmodes();
 }

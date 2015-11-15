@@ -1,5 +1,7 @@
 package com.zsq.datawatch.dao;
 
+import java.util.List;
+
 import com.zsq.datawatch.entity.Operstepmode;
 
 public interface OperstepmodeMapper {
@@ -14,4 +16,6 @@ public interface OperstepmodeMapper {
     int updateByPrimaryKeySelective(Operstepmode record);
 
     int updateByPrimaryKey(Operstepmode record);
+
+	List<Operstepmode> findAll();
 }

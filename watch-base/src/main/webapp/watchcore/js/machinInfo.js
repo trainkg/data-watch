@@ -18,7 +18,9 @@ define(['backbone','underscore',
 		data:null,
 		//是否打开了详细信息页面
 		delivery:false,
-		deliveryView:null
+		deliveryView:null,
+		//字段数据类型枚举
+		types:null
 	};
 	/**
 	 * 详细页面信息View
@@ -41,7 +43,7 @@ define(['backbone','underscore',
 			var view = this;
 			var $div = $('<div></div');
 			$('body').append($div);
-			var config = {el:$div,data:view.context.data};
+			var config = {el:$div,data:view.context.data,types:this.context.types};
 			this.context.deliveryView = new machineDelivery(config);
 			view.context.delivery = true;
 			$div.bind('m-delivery-close',function(){
@@ -82,7 +84,26 @@ define(['backbone','underscore',
 			this.context = _.extend({},this.default_config,context);
 			this.render();
 		},
+		/**
+		 * 计算节点颜色
+		 */
+		_execTempColor:function(){
+			var info = this.context.data;
+			for(var i=1; i<=8; i++){
+				var tvalue  = info['temper'+i+'value'];
+				var tstatue = info['temper'+i+'statue'];
+				if(tvalue == 777 || tvalue == 888 || tvalue == 999 || tvalue == 970
+				   || tvalue == 990 || tvalue == 988 || tstatue == 2 ){
+					info['temp'+i+'color'] = 'red';
+				}else if(tstatue == 1 || tstatue == 3){
+					info['temp'+i+'color'] = 'yellow';
+				}else{
+					info['temp'+i+'color'] = 'green';
+				}
+			}
+		},
 		render:function(){
+			this._execTempColor();
 			this.$el.html(this._template(this.context));
 			this.$el.find('.modal').show();
 		},
@@ -91,7 +112,6 @@ define(['backbone','underscore',
 			this.$el.remove();
 		},
 		reRender:function(info){
-			console.log("详细重新渲染");
 			this.context.data = info;
 			this.render();
 		}
@@ -134,7 +154,7 @@ define(['backbone','underscore',
 			}else{
 				var $div = $('<div class="m-machinfor-detail col-md-3" ></div>');
 				this.$el.append($div);
-				var context = {el:$div,data:machinfo};
+				var context = {el:$div,data:machinfo,types:this.context.types};
 				detail = new infoDetail(context);
 				this.context.item[machinfo.machmac] = detail;
 				/*var $el = $(detail.render());
@@ -158,8 +178,17 @@ define(['backbone','underscore',
 		 */
 		_getMachInfos:function(){
 			var view = this;
-			$.when($.getJSON('/watch/machine/list')).then(function(data){
-				_.each(data,function(item){
+			$.when($.getJSON('/watch/machine/list'),
+				   $.getJSON('/watch/machine/alarmtypes'),
+				   $.getJSON('/watch/machine/opermodes'),
+				   $.getJSON('/watch/machine/operstepmodes')).then(function(data,alarmtypes,opermodes,operstepmodes){
+			    var types = {
+			    	'at':alarmtypes[0],
+			    	'opt':opermodes[0],
+			    	'set':operstepmodes[0]
+			    };
+			    view.context.types = types;
+				_.each(data[0],function(item){
 					view.addMachinfo(item);
 				})
 				view.renderMachineState();

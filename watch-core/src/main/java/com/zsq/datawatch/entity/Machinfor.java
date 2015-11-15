@@ -2,6 +2,8 @@ package com.zsq.datawatch.entity;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Machinfor {
     private Integer id;
 
@@ -102,7 +104,8 @@ public class Machinfor {
     private Integer oper8value;
 
     private Integer oper9value;
-
+    
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh" , timezone="GMT+8")
     private Date reciverdate;
 
     private Integer werrdata1;

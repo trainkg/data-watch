@@ -1,5 +1,7 @@
 package com.zsq.datawatch.dao;
 
+import java.util.List;
+
 import com.zsq.datawatch.entity.Alarmtype;
 
 public interface AlarmtypeMapper {
@@ -14,4 +16,6 @@ public interface AlarmtypeMapper {
     int updateByPrimaryKeySelective(Alarmtype record);
 
     int updateByPrimaryKey(Alarmtype record);
+
+	List<Alarmtype> findAll();
 }

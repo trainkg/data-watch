@@ -1,12 +1,144 @@
+<style>
+	.u-temp-info{position: absolute;width: 50px;height: 48px;background-color: green;    text-align: center;
+    line-height: 50px;
+    color: white;
+    font-size: 16px;}
+</style>
 <div class="modal" id="<%=vid?vid:'mdelivery'%>">
-  <div class="modal-dialog">
+  <div class="modal-dialog" style="width: 750px">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title"><%=title?title:'机器详细指标信息'%></h4>
+        <h4 class="modal-title"><%=title?title:'机器详细指标信息'%> <small>最后接收数据时间:<%=data.reciverdate%></small></h4>
       </div>
       <div class="modal-body">
-        <p></p>
+      	<table class="table table-bordered">
+      		<tr>
+      			<td title="机器通讯连接状态">
+      				<%if(data.com1statue == 1){%>
+						<img src="/watchcore/images/com1-on.bmp">
+					<%}else{%>
+						<img src="/watchcore/images/com1-off.bmp">
+					<%}%>
+      			</td>
+      			<td title="机器马达状态">
+      				<%if(data.machmotorstatue == 1){%>
+						<img src="/watchcore/images/motor-on.bmp">
+					<%}else{%>
+						<img src="/watchcore/images/motor-off.bmp">
+					<%}%>
+      			</td>
+      			<td title="机器电热状态">
+      				<%if(data.machheartstatue == 1){%>
+						<img src="/watchcore/images/heateron.bmp">
+					<%}else{%>
+						<img src="/watchcore/images/heateroff.bmp">
+					<%}%>
+      			</td>
+      		</tr>
+      		<tr>
+      			<td title="机器操作模式">
+      				<%var s = _.where(types.opt,{value:data.wopermode+''})%>
+					<%if(s.length > 0){%>
+					<%=s[0].name%>
+					<%}%>
+      			</td>
+      			<td>
+      				螺杆位置
+      			</td>
+      			<td>
+      				<%=data.ruler1value%>
+      			</td>
+      		</tr>
+      		<tr>
+      			<td title="机器动作状态">
+      				<%var s = _.where(types.set,{value:data.woperstep1+'',address:0})%>
+					<%if(s.length > 0){%>
+					<%=s[0].name%>
+					<%}%>
+					
+					<%var s = _.where(types.set,{value:data.woperstep2+'',address:1})%>
+					<%if(s.length > 0){%>
+					<%=s[0].name%>
+					<%}%>
+					
+					<%var s = _.where(types.set,{value:data.woperstep3+'',address:2})%>
+					<%if(s.length > 0){%>
+					<%=s[0].name%>
+					<%}%>
+      			</td>
+      			<td>
+      				注模位置
+      			</td>
+      			<td>
+      				<%=data.ruler2value%>
+      			</td>
+      		</tr>
+      		<tr>
+      			<td title="温度">
+      				<div style="text-align: right;position: relative;">
+      					<div class="u-temp-info" style="background-color:<%=data.temp7color%>">
+      						<%=data.temper7value%>
+      					</div>
+      					<div class="u-temp-info" style="left: 60px;background-color:<%=data.temp8color%>">
+      						<%=data.temper8value%>
+      					</div>
+      					<div class="u-temp-info" style="height: 30px;left: 160px;top: 7px;line-height: 30px;background-color:<%=data.temp1color%>">
+      						<%=data.temper1value%>
+      					</div>
+      					<div class="u-temp-info" style="left: 220px;background-color:<%=data.temp2color%>">
+      						<%=data.temper2value%>
+      					</div>
+      					<div class="u-temp-info" style="left: 280px;background-color:<%=data.temp3color%>">
+      						<%=data.temper3value%>
+      					</div>
+      					<div class="u-temp-info" style="left: 340px;background-color:<%=data.temp4color%>">
+      						<%=data.temper4value%>
+      					</div>
+      					<div class="u-temp-info" style="left: 400px;background-color:<%=data.temp5color%>">
+      						<%=data.temper5value%>
+      					</div>
+      					<div class="u-temp-info" style="left: 460px;background-color:<%=data.temp6color%>">
+      						<%=data.temper6value%>
+      					</div>
+      					<img src="/watchcore/images/Temper2.bmp">
+      				</div>
+      			</td>
+      			<td>
+      				吹模位置
+      			</td>
+      			<td>
+      				<%=data.ruler3value%>
+      			</td>
+      		</tr>
+      		<tr>
+      			<td title="异常警报">
+      			<%for(var i=0;i< 16;i++){%>
+      				<%var s = _.where(types.at,{value:data['werrdata'+(i+1)]+'',address:i})%>
+					<%if(s.length > 0){%>
+					<div><%=s[0].name%></div>
+					<%}%>
+      			<%}%>
+      			</td>
+      			<td>
+      				脱模位置
+      			</td>
+      			<td>
+      				<%=data.ruler4value%>
+      			</td>
+      		</tr>
+      		<tr>
+      			<td colspan="3">
+	      			<div style="padding: 10px"
+					<%if(data.msgtype == 1){%>class='green'<%}%>
+					<%if(data.msgtype == 0){%>class='gray'<%}%>
+					<%if(data.msgtype == 2){%>class='red'<%}%>
+					>
+						<img width="130" src="/watchcore/images/machine.png">
+					</div>
+      			</td>
+      		</tr>
+      	</table>
       </div>
     </div>
   </div>

@@ -7,7 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.zsq.datawatch.entity.Alarmtype;
 import com.zsq.datawatch.entity.Machinfor;
+import com.zsq.datawatch.entity.Opermode;
+import com.zsq.datawatch.entity.Operstepmode;
 import com.zsq.datawatch.service.IWatchDataService;
 
 /**
@@ -32,5 +35,34 @@ public class WatchMachResource {
 	@ResponseBody
 	public List<Machinfor> loadSystemMachinfos(){
 		return seWatchData.getCurrentMachInfo();
+	}
+	
+	/**
+	 * 获取系统中所有的警告类型
+	 */
+	@RequestMapping(value="/alarmtypes")
+	@ResponseBody
+	public List<Alarmtype> loadAllAralmtypes(){
+		return seWatchData.getAllAlarmtypes();
+	}
+	
+	/**
+	 * 获取系统中所有的操作模式
+	 */
+	
+	@RequestMapping(value="/opermodes")
+	@ResponseBody
+	public List<Opermode> loadAllopermodes(){
+		return seWatchData.getAllOpermodes();
+	}
+	
+	/**
+	 * 获取系统中所有的操作模式
+	 */
+	
+	@RequestMapping(value="/operstepmodes")
+	@ResponseBody
+	public List<Operstepmode> loadAlloperstepmodes(){
+		return seWatchData.getAllOperstepmodes();
 	}
 }

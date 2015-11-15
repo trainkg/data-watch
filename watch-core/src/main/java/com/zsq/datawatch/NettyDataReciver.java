@@ -3,6 +3,7 @@ package com.zsq.datawatch;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -188,6 +189,8 @@ public class NettyDataReciver implements InitializingBean, DisposableBean {
 			info.setWoperstep3(Integer.valueOf(attrs[x++],16));
 			info.setWopersubstep1(Integer.valueOf(attrs[x++],16));
 			info.setWopersubstep2(Integer.valueOf(attrs[x].substring(0,attrs[x].indexOf('$')),16));
+			
+			info.setReciverdate(new Date());
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.warn("接受数据处理异常",e);
