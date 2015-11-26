@@ -300,3 +300,29 @@ CREATE TABLE `zq_user_role` (
 -- ----------------------------
 -- Records of zq_user_role
 -- ----------------------------
+
+
+ALTER TABLE `machinfor`
+ADD COLUMN `werrdata1`  int NULL AFTER `reciverDate`,
+ADD COLUMN `werrdata2`  int NULL AFTER `werrdata1`,
+ADD COLUMN `werrdata3`  int NULL AFTER `werrdata2`,
+ADD COLUMN `werrdata4`  int NULL AFTER `werrdata3`,
+ADD COLUMN `werrdata5`  int NULL AFTER `werrdata4`,
+ADD COLUMN `werrdata6`  int NULL AFTER `werrdata5`,
+ADD COLUMN `werrdata7`  int NULL AFTER `werrdata6`,
+ADD COLUMN `werrdata8`  int NULL AFTER `werrdata7`,
+ADD COLUMN `werrdata9`  int NULL AFTER `werrdata8`,
+ADD COLUMN `werrdata10`  int NULL AFTER `werrdata9`,
+ADD COLUMN `werrdata11`  int NULL AFTER `werrdata10`,
+ADD COLUMN `werrdata12`  int NULL AFTER `werrdata11`,
+ADD COLUMN `werrdata13`  int NULL AFTER `werrdata12`,
+ADD COLUMN `werrdata14`  int NULL AFTER `werrdata13`,
+ADD COLUMN `werrdata15`  int NULL AFTER `werrdata14`,
+ADD COLUMN `werrdata16`  int NULL AFTER `werrdata15`,
+
+ADD COLUMN `wopermode`  int NULL AFTER `werrdata16`,
+ADD COLUMN `woperstep1`  int NULL AFTER `wopermode`,
+ADD COLUMN `woperstep2`  int NULL AFTER `woperstep1`,
+ADD COLUMN `wopersubstep1`  int NULL AFTER `woperstep2`,
+ADD COLUMN `wopersubstep2`  int NULL AFTER `wopersubstep1`,
+ADD COLUMN `woperstep3`  int NULL AFTER `wopersubstep2`;
